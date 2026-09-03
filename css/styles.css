@@ -1134,6 +1134,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .review-card[hidden]{ display: none; }
 .review-photo{
   width: 84px;
+  height: auto; /* without this, the img's width/height attributes (its real pixel size) win over aspect-ratio */
   aspect-ratio: 4/5;
   object-fit: cover;
   border: 1px solid var(--line);
@@ -1196,6 +1197,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 }
 .related-card img{
   width: 92px;
+  height: auto; /* without this, the img's width/height attributes (its real pixel size) win over aspect-ratio */
   aspect-ratio: 4/5;
   object-fit: cover;
   border: 1px solid var(--line);
