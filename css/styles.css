@@ -1165,15 +1165,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
      light-coloured version of the logo instead. */
   filter: invert(1);
 }
-.footer-brand p{ font-size: var(--text-sm); color: #B9B2A6; max-width: 32ch; margin-bottom: 1.2rem; }
-.footer-social{ display: flex; gap: 0.8rem; }
-.footer-social a{
-  width: 34px; height: 34px;
-  border: 1px solid #4A453D;
-  border-radius: 50%;
-  display: grid; place-items: center;
-}
-.footer-social svg{ width: 15px; height: 15px; }
+.footer-brand p{ font-size: var(--text-sm); color: #B9B2A6; max-width: 32ch; }
 .footer-col h3{
   font-size: var(--text-xs);
   text-transform: uppercase;
