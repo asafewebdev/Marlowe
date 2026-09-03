@@ -266,7 +266,8 @@
         var priceNowEl = document.querySelector('.price-now');
         var priceWasEl = document.querySelector('.price-was');
         addToCart({
-          colour: activeSwatch ? activeSwatch.getAttribute('data-colour-name') : '',
+          name: 'Marlowe Faux Fur Coat',
+          variant: activeSwatch ? activeSwatch.getAttribute('data-colour-name') : '',
           size: selectedSize,
           price: priceNowEl ? parseFloat(priceNowEl.textContent.replace(/[^0-9.]/g, '')) : 0,
           was: priceWasEl ? parseFloat(priceWasEl.textContent.replace(/[^0-9.]/g, '')) : null,
@@ -308,7 +309,7 @@
     }
 
     function addItem(data) {
-      var key = data.colour + '|' + data.size;
+      var key = data.name + '|' + data.variant + '|' + (data.size || '');
       var existing = findItem(key);
       if (existing) {
         existing.qty += 1;
@@ -367,11 +368,12 @@
       items.forEach(function (item) {
         var row = document.createElement('div');
         row.className = 'cart-item';
+        var metaLine = item.size ? '<p class="cart-item-meta">Size ' + item.size + '</p>' : '';
         row.innerHTML =
           '<img class="cart-item-img" src="' + item.img + '" alt="" width="72" height="90">' +
           '<div class="cart-item-info">' +
-            '<p class="cart-item-name">Marlowe Faux Fur Coat &middot; ' + item.colour + '</p>' +
-            '<p class="cart-item-meta">Size ' + item.size + '</p>' +
+            '<p class="cart-item-name">' + item.name + ' &middot; ' + item.variant + '</p>' +
+            metaLine +
             '<div class="cart-item-price-row"><span>' + money(item.price) + ' each</span><strong>' + money(item.price * item.qty) + '</strong></div>' +
             '<div class="cart-qty-row">' +
               '<span class="cart-qty">' +
@@ -555,6 +557,27 @@
         status.classList.add('is-visible');
       }
       form.reset();
+    });
+  })();
+
+  /* -----------------------------------------------------------------------
+     "We Think You'll Like" - each card adds straight to the bag (no
+     product page to visit). EDIT: reads its data from the data-* attrs
+     on each .related-add button in index.html.
+  ----------------------------------------------------------------------- */
+  (function relatedAddToCart() {
+    var buttons = document.querySelectorAll('.related-add');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        addToCart({
+          name: btn.getAttribute('data-name'),
+          variant: btn.getAttribute('data-variant'),
+          size: null,
+          price: parseFloat(btn.getAttribute('data-price')),
+          was: null,
+          img: btn.getAttribute('data-img')
+        });
+      });
     });
   })();
 

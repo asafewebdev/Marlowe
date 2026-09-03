@@ -1108,7 +1108,66 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .reviews-load-more{ text-align: center; }
 
 /* =========================================================================
-   12. NEWSLETTER
+   12. RELATED PRODUCTS
+   EDIT: once you have real photography, replace each card's
+   <div class="ph" …> with an <img src="images/…" alt="…">.
+   ========================================================================= */
+.related{ padding-block: 4rem; background: var(--surface-alt); border-block: 1px solid var(--line); }
+.related-heading{ text-align: center; margin-bottom: 2rem; }
+.related-grid{
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 700px){
+  .related-grid{ grid-template-columns: repeat(4, 1fr); }
+}
+.related-card{ display: flex; flex-direction: column; }
+.related-card img{
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  margin-bottom: 0.8rem;
+}
+.related-name{ font-size: var(--text-sm); font-weight: 600; margin-bottom: 0.2em; }
+.related-price{ font-size: var(--text-sm); color: var(--ink-soft); margin-bottom: 0.8rem; }
+.related-card .btn{
+  margin-top: auto;
+  padding: 0.75em 1em;
+  font-size: var(--text-xs);
+}
+
+/* generic image placeholder ------------------------------------------------
+   EDIT: once you have real photography, replace the containing <div class="ph …">
+   with an <img src="images/your-photo.jpg" alt="…"> - the placeholder styling
+   below is only a stand-in so the layout previews correctly.
+----------------------------------------------------------------------- */
+.ph{
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  background:
+    linear-gradient(135deg, #E4E0D6 25%, transparent 25%) 0 0/24px 24px,
+    linear-gradient(315deg, #E4E0D6 25%, transparent 25%) 0 0/24px 24px,
+    #EFEBE2;
+  color: var(--ink-faint);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.ph::after{
+  content: attr(data-label);
+  display: block;
+  width: 100%;
+  padding: 0.6em 0.75em;
+  font-size: var(--text-xs);
+  letter-spacing: 0.03em;
+  background: rgba(255,255,255,0.82);
+  border-top: 1px solid var(--line);
+}
+
+/* =========================================================================
+   13. NEWSLETTER
    ========================================================================= */
 .newsletter{ padding-block: 4.5rem; text-align: center; }
 .newsletter .container{ max-width: 560px; }
@@ -1141,7 +1200,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .newsletter-status.is-visible{ display: block; }
 
 /* =========================================================================
-   13. FOOTER
+   14. FOOTER
    ========================================================================= */
 .site-footer{
   background: var(--ink);
@@ -1202,7 +1261,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .footer-legal a:hover{ text-decoration: underline; }
 
 /* =========================================================================
-   14. TOAST (Add to Bag feedback)
+   15. TOAST (Add to Bag feedback)
    ========================================================================= */
 .toast{
   position: fixed;
@@ -1226,7 +1285,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .toast svg{ width: 16px; height: 16px; color: #8FBF9A; flex-shrink: 0; }
 
 /* =========================================================================
-   15. BAG DRAWER
+   16. BAG DRAWER
    Marlowe identity: white panel, oxblood accent for price/CTA, forest
    green reserved for the shipping "unlocked" success state, pill shapes
    throughout to match the rounded buttons/size selector.
