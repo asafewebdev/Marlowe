@@ -24,15 +24,15 @@
 <a class="skip-link" href="#main-content">Skip to content</a>
 
 <!-- =====================================================================
-     ANNOUNCEMENT BAR - edit the three messages below, or delete <li>s
-     for fewer / add more. Cycles automatically via js/main.js.
+     ANNOUNCEMENT BAR - static, all three messages shown at once (no
+     rotation). EDIT the three <li>s below to change the messages.
      ===================================================================== -->
 <div class="announcement-bar">
   <div class="container">
-    <ul class="announcement-track" aria-live="polite">
-      <li class="is-active">Free delivery across the UK on your first order</li>
-      <li>New in: the Winter Outerwear Edit</li>
-      <li>Free 28-day returns. <a href="#">See details</a></li>
+    <ul class="announcement-track">
+      <li>Free UK delivery on your first order</li>
+      <li>50% off until Autumn</li>
+      <li>Free returns</li>
     </ul>
   </div>
 </div>
@@ -250,6 +250,22 @@
 
         <!-- EDIT: wire this button to your real cart/checkout logic -->
         <button id="add-to-bag" class="btn btn-primary">Add to Bag</button>
+
+        <!-- EDIT: the three trust badges below - icon + short label each -->
+        <ul class="buybox-trust">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="8" width="12.5" height="8.5" rx="1"/><path d="M14 10.5h4l3.5 3.5V16.5h-7.5z"/><circle cx="5.7" cy="18.3" r="1.7"/><circle cx="16.8" cy="18.3" r="1.7"/></svg>
+            <span>Free UK delivery</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 4v5h5"/><path d="M20 15a8 8 0 1 1-2.2-6.6L4 9"/></svg>
+            <span>Free returns</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.7-3 8.4-7 9.5-4-1.1-7-4.8-7-9.5V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span>Secure checkout</span>
+          </li>
+        </ul>
 
         <p class="buybox-note">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="4" rx="1"/><path d="M12 10V4M12 10 8 4M12 10l4-6"/><path d="M5 14v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6"/></svg>

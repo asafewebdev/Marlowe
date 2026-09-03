@@ -55,21 +55,6 @@
   })();
 
   /* -----------------------------------------------------------------------
-     Announcement bar - cycles through the <li> messages.
-     EDIT the interval (ms) below, or delete this block for a static bar.
-  ----------------------------------------------------------------------- */
-  (function announcementCycle() {
-    var items = document.querySelectorAll('.announcement-track li');
-    if (items.length < 2 || prefersReducedMotion) return;
-    var index = 0;
-    setInterval(function () {
-      items[index].classList.remove('is-active');
-      index = (index + 1) % items.length;
-      items[index].classList.add('is-active');
-    }, 4500);
-  })();
-
-  /* -----------------------------------------------------------------------
      Mobile navigation toggle
   ----------------------------------------------------------------------- */
   (function mobileNav() {
