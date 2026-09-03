@@ -1087,25 +1087,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .reviews-load-more{ text-align: center; }
 
 /* =========================================================================
-   12. RELATED PRODUCTS
-   ========================================================================= */
-.related{ padding-block: 4rem; background: var(--surface-alt); border-block: 1px solid var(--line); }
-.related-heading{ text-align: center; margin-bottom: 2rem; }
-.related-grid{
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(2, 1fr);
-}
-@media (min-width: 700px){
-  .related-grid{ grid-template-columns: repeat(4, 1fr); }
-}
-.related-card .ph{ aspect-ratio: 4/5; margin-bottom: 0.8rem; }
-.related-card .ph::after{ font-size: 0.65rem; }
-.related-name{ font-size: var(--text-sm); font-weight: 600; margin-bottom: 0.2em; }
-.related-price{ font-size: var(--text-sm); color: var(--ink-soft); }
-
-/* =========================================================================
-   13. NEWSLETTER
+   12. NEWSLETTER
    ========================================================================= */
 .newsletter{ padding-block: 4.5rem; text-align: center; }
 .newsletter .container{ max-width: 560px; }
@@ -1138,7 +1120,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .newsletter-status.is-visible{ display: block; }
 
 /* =========================================================================
-   14. FOOTER
+   13. FOOTER
    ========================================================================= */
 .site-footer{
   background: var(--ink);
@@ -1207,7 +1189,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .footer-legal a:hover{ text-decoration: underline; }
 
 /* =========================================================================
-   15. TOAST (Add to Bag feedback)
+   14. TOAST (Add to Bag feedback)
    ========================================================================= */
 .toast{
   position: fixed;

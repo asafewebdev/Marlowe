@@ -30,8 +30,8 @@ npx serve .
    Everywhere else, a grey/white diagonal-pattern box is still a
    placeholder - search `index.html` for `<div class="ph"` and replace
    each one with a real `<img src="images/…" alt="…">`. Remaining
-   placeholders: 2 review photos and 4 related-product images. Suggested
-   sizes: product shots 1200×1500px (4:5), thumbnails same ratio.
+   placeholders: 2 review photos. Suggested sizes: product shots
+   1200×1500px (4:5), thumbnails same ratio.
 2. **Price, colours, sizes** - in the `.buybox` block near the top of
    `index.html`. Toggle the `disabled` attribute on a `.size-btn` to mark a
    size out of stock.
