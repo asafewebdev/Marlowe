@@ -1126,6 +1126,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .reviews-list{ display: grid; gap: 1.75rem; margin-bottom: 2rem; }
 .review-card{
   display: flex;
+  align-items: flex-start; /* without this, flex's default stretch fights the photo's aspect-ratio */
   gap: 1.1rem;
   padding-bottom: 1.75rem;
   border-bottom: 1px solid var(--line);
@@ -1184,13 +1185,14 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .related-card{
   display: flex;
   flex-direction: row;
+  align-items: flex-start; /* without this, flex's default stretch fights the photo's aspect-ratio */
   gap: 1rem;
   padding: 0.75rem;
   background: var(--surface);
   border: 1px solid var(--line);
 }
 @media (min-width: 480px){
-  .related-card{ flex-direction: column; padding: 0; background: none; border: 0; }
+  .related-card{ flex-direction: column; align-items: stretch; padding: 0; background: none; border: 0; }
 }
 .related-card img{
   width: 92px;
