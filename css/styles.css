@@ -497,6 +497,21 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   text-underline-offset: 2px;
 }
 
+/* Promo badge - deliberately understated: a thin-bordered tag, not a
+   filled banner, so a sale still reads as premium rather than urgent. */
+.promo-badge{
+  display: inline-block;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-tint);
+  border: 1px solid var(--accent);
+  padding: 0.4em 0.8em;
+  margin-bottom: 0.85rem;
+}
+
 .buybox-price{
   display: flex;
   align-items: baseline;
@@ -519,6 +534,57 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   font-weight: 700;
   letter-spacing: 0.02em;
 }
+
+/* Pre-Fall Sale countdown - EDIT: the target date lives as SALE_END_DATE
+   near the top of js/main.js. On expiry it freezes at 00:00:00:00; it
+   never changes the price or resets on its own (see js/main.js). */
+.promo-countdown{
+  margin: 0.9rem 0 1.25rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+}
+.promo-countdown-label{
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 0.6rem;
+}
+.countdown{
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.countdown-unit{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 2.5rem;
+}
+.countdown-value{
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.countdown-unit-label{
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  margin-top: 0.3em;
+}
+.countdown-sep{
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--line-strong);
+  line-height: 1;
+}
+
 .buybox-financing{
   font-size: var(--text-xs);
   color: var(--ink-soft);

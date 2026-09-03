@@ -14,6 +14,47 @@
   var renderGalleryColour = function () {};
 
   /* -----------------------------------------------------------------------
+     Pre-Fall Sale countdown - EDIT this date/time to run a new promotion.
+     No timezone suffix, so it's read in the visitor's local time, same as
+     the rest of the checkout experience.
+  ----------------------------------------------------------------------- */
+  var SALE_END_DATE = "2026-09-23T23:59:00";
+
+  (function saleCountdown() {
+    var daysEl = document.getElementById('cd-days');
+    var hoursEl = document.getElementById('cd-hours');
+    var minsEl = document.getElementById('cd-mins');
+    var secsEl = document.getElementById('cd-secs');
+    if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
+
+    var endTime = new Date(SALE_END_DATE).getTime();
+    var timerId;
+
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+    function tick() {
+      var remaining = endTime - Date.now();
+
+      // At zero, freeze on 00:00:00:00 - this is visual only. It never
+      // touches the price and never loops back to a fresh countdown.
+      if (remaining <= 0) {
+        daysEl.textContent = hoursEl.textContent = minsEl.textContent = secsEl.textContent = '00';
+        clearInterval(timerId);
+        return;
+      }
+
+      var totalSeconds = Math.floor(remaining / 1000);
+      daysEl.textContent = pad(Math.floor(totalSeconds / 86400));
+      hoursEl.textContent = pad(Math.floor((totalSeconds % 86400) / 3600));
+      minsEl.textContent = pad(Math.floor((totalSeconds % 3600) / 60));
+      secsEl.textContent = pad(totalSeconds % 60);
+    }
+
+    tick();
+    timerId = setInterval(tick, 1000);
+  })();
+
+  /* -----------------------------------------------------------------------
      Announcement bar - cycles through the <li> messages.
      EDIT the interval (ms) below, or delete this block for a static bar.
   ----------------------------------------------------------------------- */
