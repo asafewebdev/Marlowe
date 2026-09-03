@@ -688,10 +688,101 @@
           </div>
         </li>
 
+        <!-- Reviews below are revealed by "Load more reviews" (js/main.js) -->
+        <li class="review-card" hidden>
+          <div class="review-content">
+            <div class="review-top">
+              <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
+              <span class="visually-hidden">5 out of 5 stars</span>
+              <span class="review-verified">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+                Verified Purchase
+              </span>
+            </div>
+            <p class="review-meta">Freya B. · 3 August 2026</p>
+            <p class="review-body">Bought this as a gift for my mum and she hasn't taken it off since. The packaging alone felt like a proper luxury purchase, tissue paper and all.</p>
+          </div>
+        </li>
+
+        <li class="review-card" hidden>
+          <div class="review-content">
+            <div class="review-top">
+              <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
+              <span class="visually-hidden">5 out of 5 stars</span>
+              <span class="review-verified">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+                Verified Purchase
+              </span>
+            </div>
+            <p class="review-meta">Poppy R. · 30 July 2026</p>
+            <p class="review-body">First faux fur coat I've owned and I was worried it would look cheap. It doesn't. The belt cinches it in properly rather than just hanging there like some I've tried on.</p>
+          </div>
+        </li>
+
+        <li class="review-card" hidden>
+          <div class="review-content">
+            <div class="review-top">
+              <span class="star-rating star-rating--sm" style="--pct:80%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
+              <span class="visually-hidden">4 out of 5 stars</span>
+              <span class="review-verified">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+                Verified Purchase
+              </span>
+            </div>
+            <p class="review-meta">Ruby S. · 26 July 2026</p>
+            <p class="review-body">Really lovely coat and the weight is spot on, not too heavy to wear all day. Only wish there was a longer option as I'm quite tall.</p>
+          </div>
+        </li>
+
+        <li class="review-card" hidden>
+          <div class="review-content">
+            <div class="review-top">
+              <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
+              <span class="visually-hidden">5 out of 5 stars</span>
+              <span class="review-verified">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+                Verified Purchase
+              </span>
+            </div>
+            <p class="review-meta">Millie K. · 22 July 2026</p>
+            <p class="review-body">Wore it on a walk in proper wind and rain and it held up brilliantly, dried out fine and the fur didn't flatten. Genuinely impressed.</p>
+          </div>
+        </li>
+
+        <li class="review-card" hidden>
+          <div class="review-content">
+            <div class="review-top">
+              <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
+              <span class="visually-hidden">5 out of 5 stars</span>
+              <span class="review-verified">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+                Verified Purchase
+              </span>
+            </div>
+            <p class="review-meta">Erin D. · 18 July 2026</p>
+            <p class="review-body">Compared it against two other faux fur coats before buying and this one won easily on the collar alone. Feels expensive without the price tag.</p>
+          </div>
+        </li>
+
+        <li class="review-card" hidden>
+          <div class="review-content">
+            <div class="review-top">
+              <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
+              <span class="visually-hidden">5 out of 5 stars</span>
+              <span class="review-verified">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+                Verified Purchase
+              </span>
+            </div>
+            <p class="review-meta">Lucy H. · 14 July 2026</p>
+            <p class="review-body">Had to size up slightly from what I'd normally wear but the size chart got it right first time. Wearing it constantly now the weather's turned.</p>
+          </div>
+        </li>
+
       </ul>
 
-      <!-- EDIT: visual only for now - no more reviews are wired up behind
-           it. Point at your reviews provider's pagination when ready. -->
+      <!-- EDIT: reveals the [hidden] cards above, 3 at a time, then hides
+           itself once none are left (see js/main.js, reviewsLoadMore). -->
       <div class="reviews-load-more">
         <button id="load-more-reviews" class="btn btn-secondary">Load more reviews</button>
       </div>

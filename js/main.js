@@ -478,6 +478,25 @@
   })();
 
   /* -----------------------------------------------------------------------
+     Reviews - "Load more" reveals additional hidden review cards, in the
+     same fixed order they appear in the markup (never re-sorted).
+     EDIT: swap the [hidden] markup in index.html for your real dataset,
+     or replace this block with a fetch() call to your reviews API.
+  ----------------------------------------------------------------------- */
+  (function reviewsLoadMore() {
+    var button = document.getElementById('load-more-reviews');
+    if (!button) return;
+    button.addEventListener('click', function () {
+      var hidden = document.querySelectorAll('.review-card[hidden]');
+      var batch = Array.prototype.slice.call(hidden, 0, 3);
+      batch.forEach(function (card) { card.removeAttribute('hidden'); });
+      if (document.querySelectorAll('.review-card[hidden]').length === 0) {
+        button.setAttribute('hidden', '');
+      }
+    });
+  })();
+
+  /* -----------------------------------------------------------------------
      Write a Review - EDIT: submitting only builds a new .review-card and
      prepends it to the list on this page; nothing is sent anywhere. Point
      this at a real backend/reviews provider when you have one.
