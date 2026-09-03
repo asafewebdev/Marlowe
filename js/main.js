@@ -13,6 +13,24 @@
   // swap the gallery's photo set. Left as a no-op until gallery() runs.
   var renderGalleryColour = function () {};
 
+  // Set by the bag drawer block below; called by Add to Bag with the
+  // selected variant. Left as a no-op until that block runs.
+  var addToCart = function () {};
+
+  // Small pill notification, used for secondary confirmations (removing a
+  // bag item) - adding an item opens the bag drawer instead, which is
+  // confirmation enough on its own.
+  var toastEl = document.getElementById('toast');
+  function showToast(message) {
+    if (!toastEl) return;
+    toastEl.querySelector('.toast-message').textContent = message;
+    toastEl.classList.add('is-visible');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(function () {
+      toastEl.classList.remove('is-visible');
+    }, 3200);
+  }
+
   /* -----------------------------------------------------------------------
      Pre-Fall Sale countdown - EDIT this date/time to run a new promotion.
      No timezone suffix, so it's read in the visitor's local time, same as
@@ -206,8 +224,6 @@
     var sizeValueLabel = document.getElementById('selected-size');
     var sizeError = document.querySelector('.size-error');
     var addToBagBtn = document.getElementById('add-to-bag');
-    var bagCount = document.querySelector('.bag-count');
-    var toast = document.getElementById('toast');
     var measurementsBox = document.getElementById('measurements');
     var measurementsSize = document.getElementById('measurements-size');
     var selectedSize = null;
@@ -243,24 +259,172 @@
           return;
         }
         // EDIT: replace this with your real add-to-cart call (fetch/AJAX to
-        // your cart endpoint, or a call into your ecommerce platform's SDK).
-        if (bagCount) {
-          var current = parseInt(bagCount.textContent, 10) || 0;
-          bagCount.textContent = String(current + 1);
+        // your cart endpoint, or a call into your ecommerce platform's SDK)
+        // - addToCart only keeps state in memory, for the bag drawer.
+        var activeSwatch = document.querySelector('.swatch.is-active');
+        var mainImg = document.getElementById('gallery-main-img');
+        var priceNowEl = document.querySelector('.price-now');
+        var priceWasEl = document.querySelector('.price-was');
+        addToCart({
+          colour: activeSwatch ? activeSwatch.getAttribute('data-colour-name') : '',
+          size: selectedSize,
+          price: priceNowEl ? parseFloat(priceNowEl.textContent.replace(/[^0-9.]/g, '')) : 0,
+          was: priceWasEl ? parseFloat(priceWasEl.textContent.replace(/[^0-9.]/g, '')) : null,
+          img: mainImg ? mainImg.getAttribute('src') : ''
+        });
+      });
+    }
+  })();
+
+  /* -----------------------------------------------------------------------
+     Bag drawer - a small in-memory cart (state resets on page refresh).
+     EDIT: swap addItem/removeItem/setQty for calls into your real
+     cart/checkout API once you have one; render() is the one place that
+     needs to know the current shape of a cart line.
+  ----------------------------------------------------------------------- */
+  (function cart() {
+    var overlay = document.getElementById('cart-overlay');
+    var drawer = document.getElementById('cart-drawer');
+    var closeBtn = document.getElementById('cart-close');
+    var trigger = document.getElementById('cart-trigger');
+    var itemsWrap = document.getElementById('cart-items');
+    var emptyState = document.getElementById('cart-empty');
+    var countLabel = document.getElementById('cart-count-label');
+    var summaryItems = document.getElementById('cart-summary-items');
+    var summaryStandard = document.getElementById('cart-summary-standard');
+    var summaryTotal = document.getElementById('cart-summary-total');
+    var summarySavings = document.getElementById('cart-summary-savings');
+    if (!overlay || !drawer || !itemsWrap) return;
+
+    var items = []; // { key, colour, size, price, was, img, qty }
+
+    function money(n) { return '£' + n.toFixed(2); }
+
+    function findItem(key) {
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].key === key) return items[i];
+      }
+      return null;
+    }
+
+    function addItem(data) {
+      var key = data.colour + '|' + data.size;
+      var existing = findItem(key);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        data.key = key;
+        data.qty = 1;
+        items.push(data);
+      }
+      render();
+      open();
+    }
+
+    function removeItem(key) {
+      items = items.filter(function (i) { return i.key !== key; });
+      render();
+    }
+
+    function setQty(key, qty) {
+      if (qty < 1) { removeItem(key); return; }
+      var item = findItem(key);
+      if (!item) return;
+      item.qty = qty;
+      render();
+    }
+
+    function render() {
+      var totalQty = items.reduce(function (sum, i) { return sum + i.qty; }, 0);
+      var totalNow = items.reduce(function (sum, i) { return sum + i.price * i.qty; }, 0);
+      var totalWas = items.reduce(function (sum, i) { return sum + (i.was || i.price) * i.qty; }, 0);
+
+      if (countLabel) countLabel.textContent = '(' + totalQty + ')';
+      document.querySelectorAll('.bag-count').forEach(function (el) { el.textContent = String(totalQty); });
+      if (trigger) trigger.setAttribute('aria-label', 'Open shopping bag, ' + totalQty + ' item' + (totalQty === 1 ? '' : 's'));
+
+      if (summaryItems) summaryItems.textContent = String(totalQty);
+      if (summaryStandard) summaryStandard.textContent = money(totalWas);
+      if (summaryTotal) summaryTotal.textContent = money(totalNow);
+      if (summarySavings) {
+        var savings = totalWas - totalNow;
+        if (savings > 0.004) {
+          summarySavings.textContent = "You're saving " + money(savings) + ' with the Autumn Event.';
+          summarySavings.hidden = false;
+        } else {
+          summarySavings.hidden = true;
         }
-        showToast('Added to your bag, Size ' + selectedSize);
+      }
+
+      itemsWrap.querySelectorAll('.cart-item').forEach(function (el) { el.remove(); });
+
+      if (items.length === 0) {
+        if (emptyState) emptyState.hidden = false;
+        return;
+      }
+      if (emptyState) emptyState.hidden = true;
+
+      items.forEach(function (item) {
+        var row = document.createElement('div');
+        row.className = 'cart-item';
+        row.innerHTML =
+          '<img class="cart-item-img" src="' + item.img + '" alt="" width="72" height="90">' +
+          '<div class="cart-item-info">' +
+            '<p class="cart-item-name">Marlowe Faux Fur Coat &middot; ' + item.colour + '</p>' +
+            '<p class="cart-item-meta">Size ' + item.size + '</p>' +
+            '<div class="cart-item-price-row"><span>' + money(item.price) + ' each</span><strong>' + money(item.price * item.qty) + '</strong></div>' +
+            '<div class="cart-qty-row">' +
+              '<span class="cart-qty">' +
+                '<button type="button" aria-label="Decrease quantity">&minus;</button>' +
+                '<span>' + item.qty + '</span>' +
+                '<button type="button" aria-label="Increase quantity">+</button>' +
+              '</span>' +
+              '<button type="button" class="cart-remove">Remove</button>' +
+            '</div>' +
+          '</div>';
+
+        var qtyButtons = row.querySelectorAll('.cart-qty button');
+        qtyButtons[0].addEventListener('click', function () { setQty(item.key, item.qty - 1); });
+        qtyButtons[1].addEventListener('click', function () { setQty(item.key, item.qty + 1); });
+        row.querySelector('.cart-remove').addEventListener('click', function () {
+          removeItem(item.key);
+          showToast('Removed from your bag');
+        });
+
+        itemsWrap.appendChild(row);
       });
     }
 
-    function showToast(message) {
-      if (!toast) return;
-      toast.querySelector('.toast-message').textContent = message;
-      toast.classList.add('is-visible');
-      clearTimeout(showToast._t);
-      showToast._t = setTimeout(function () {
-        toast.classList.remove('is-visible');
-      }, 3200);
+    function open() {
+      overlay.hidden = false;
+      requestAnimationFrame(function () {
+        overlay.classList.add('is-visible');
+        drawer.classList.add('is-open');
+      });
+      drawer.removeAttribute('inert');
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('cart-open');
+      if (closeBtn) closeBtn.focus();
     }
+
+    function close() {
+      overlay.classList.remove('is-visible');
+      drawer.classList.remove('is-open');
+      drawer.setAttribute('inert', ''); // keeps its buttons out of the tab order while closed
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('cart-open');
+      setTimeout(function () { overlay.hidden = true; }, 300);
+      if (trigger) trigger.focus();
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', close);
+    if (trigger) trigger.addEventListener('click', open);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && drawer.classList.contains('is-open')) close();
+    });
+
+    addToCart = addItem;
   })();
 
   /* -----------------------------------------------------------------------
