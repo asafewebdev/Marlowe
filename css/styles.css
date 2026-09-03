@@ -342,8 +342,11 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .gallery-main{
   aspect-ratio: 4 / 5;
   position: relative;
+  border: 1px solid var(--line);
+  overflow: hidden;
 }
 .gallery-main .ph{ width: 100%; height: 100%; }
+.gallery-main img{ width: 100%; height: 100%; object-fit: cover; }
 .gallery-wishlist{
   position: absolute;
   top: 1rem; right: 1rem;
@@ -372,6 +375,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 }
 .thumb .ph{ width: 100%; height: 100%; }
 .thumb .ph::after{ display: none; }
+.thumb img{ width: 100%; height: 100%; object-fit: cover; }
 .thumb.is-active{ outline: 2px solid var(--ink); outline-offset: -1px; border-color: var(--ink); }
 
 /* -- Buy box -- */

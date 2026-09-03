@@ -22,11 +22,16 @@ npx serve .
 
 ## What to edit first
 
-1. **Photography** - every grey/white diagonal-pattern box is a placeholder.
-   Search `index.html` for `<div class="ph"` and replace each one with a real
-   `<img src="images/…" alt="…">`. There are placeholders for: the main
-   gallery image, 5 thumbnails, 2 review photos, and 4 related-product images.
-   Suggested sizes: product shots 1200×1500px (4:5), thumbnails same ratio.
+1. **Photography** - the main product gallery now uses real photos, one
+   front/back set per colourway, defined in the `GALLERY` object near the
+   top of `js/main.js` (files live in `images/coat-<colour>-*.jpg`). Add,
+   reorder or replace entries there to change what shows up; clicking a
+   colour swatch re-renders the gallery from that data automatically.
+   Everywhere else, a grey/white diagonal-pattern box is still a
+   placeholder - search `index.html` for `<div class="ph"` and replace
+   each one with a real `<img src="images/…" alt="…">`. Remaining
+   placeholders: 2 review photos and 4 related-product images. Suggested
+   sizes: product shots 1200×1500px (4:5), thumbnails same ratio.
 2. **Price, colours, sizes** - in the `.buybox` block near the top of
    `index.html`. Toggle the `disabled` attribute on a `.size-btn` to mark a
    size out of stock.

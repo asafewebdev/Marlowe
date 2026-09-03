@@ -9,6 +9,10 @@
 
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Set by the gallery block below; called by the colour-swatch handler to
+  // swap the gallery's photo set. Left as a no-op until gallery() runs.
+  var renderGalleryColour = function () {};
+
   /* -----------------------------------------------------------------------
      Announcement bar - cycles through the <li> messages.
      EDIT the interval (ms) below, or delete this block for a static bar.
@@ -38,23 +42,79 @@
   })();
 
   /* -----------------------------------------------------------------------
-     Product gallery - thumbnail click swaps the main image placeholder.
-     When you wire up real photos, give each thumbnail a data-full-src
-     (or data-full-label) and swap the <img>/label on the main image here.
+     Product gallery - one photo set per colourway. EDIT: add/replace
+     entries here (and the matching files in images/) to change what
+     shows up; front image is used as each colour's swatch preview and
+     as the first thumbnail/main photo when that colour is selected.
   ----------------------------------------------------------------------- */
+  var GALLERY = {
+    mink: [
+      { src: 'images/coat-mink-front.jpg', alt: 'Marlowe Faux Fur Coat in Mink, front view' },
+      { src: 'images/coat-mink-back.jpg', alt: 'Marlowe Faux Fur Coat in Mink, back view' }
+    ],
+    ivory: [
+      { src: 'images/coat-ivory-front.jpg', alt: 'Marlowe Faux Fur Coat in Ivory, front view' },
+      { src: 'images/coat-ivory-back.jpg', alt: 'Marlowe Faux Fur Coat in Ivory, back view' }
+    ],
+    noir: [
+      { src: 'images/coat-noir-front.jpg', alt: 'Marlowe Faux Fur Coat in Noir, front view' },
+      { src: 'images/coat-noir-back.jpg', alt: 'Marlowe Faux Fur Coat in Noir, back view' }
+    ],
+    ocelot: [
+      { src: 'images/coat-ocelot-front.jpg', alt: 'Marlowe Faux Fur Coat in Ocelot, front view' },
+      { src: 'images/coat-ocelot-alt.jpg', alt: 'Marlowe Faux Fur Coat in Ocelot, alternate front view' },
+      { src: 'images/coat-ocelot-back.jpg', alt: 'Marlowe Faux Fur Coat in Ocelot, back view' }
+    ]
+  };
+
   (function gallery() {
-    var thumbs = document.querySelectorAll('.thumb');
-    var main = document.querySelector('.gallery-main .ph');
-    if (!thumbs.length || !main) return;
-    thumbs.forEach(function (thumb) {
-      thumb.addEventListener('click', function () {
-        thumbs.forEach(function (t) { t.classList.remove('is-active'); t.removeAttribute('aria-current'); });
-        thumb.classList.add('is-active');
-        thumb.setAttribute('aria-current', 'true');
-        var label = thumb.getAttribute('data-full-label');
-        if (label) main.setAttribute('data-label', label);
+    var mainImg = document.getElementById('gallery-main-img');
+    var thumbsWrap = document.getElementById('gallery-thumbs');
+    if (!mainImg || !thumbsWrap) return;
+
+    function showPhoto(src, alt) {
+      mainImg.setAttribute('src', src);
+      mainImg.setAttribute('alt', alt);
+    }
+
+    // Rebuilds the thumbnail rail for a colourway and shows its first photo.
+    function renderColour(colourKey) {
+      var photos = GALLERY[colourKey];
+      if (!photos || !photos.length) return;
+
+      thumbsWrap.innerHTML = '';
+      photos.forEach(function (photo, i) {
+        var btn = document.createElement('button');
+        btn.className = 'thumb' + (i === 0 ? ' is-active' : '');
+        btn.setAttribute('aria-label', 'View ' + (i + 1));
+        if (i === 0) btn.setAttribute('aria-current', 'true');
+        btn.setAttribute('data-src', photo.src);
+        btn.setAttribute('data-alt', photo.alt);
+
+        var img = document.createElement('img');
+        img.src = photo.src;
+        img.alt = '';
+        img.width = 600;
+        img.height = 800;
+        btn.appendChild(img);
+
+        btn.addEventListener('click', function () {
+          thumbsWrap.querySelectorAll('.thumb').forEach(function (t) {
+            t.classList.remove('is-active');
+            t.removeAttribute('aria-current');
+          });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-current', 'true');
+          showPhoto(photo.src, photo.alt);
+        });
+
+        thumbsWrap.appendChild(btn);
       });
-    });
+
+      showPhoto(photos[0].src, photos[0].alt);
+    }
+
+    renderGalleryColour = renderColour;
   })();
 
   /* -----------------------------------------------------------------------
@@ -82,6 +142,7 @@
         btn.classList.add('is-active');
         btn.setAttribute('aria-pressed', 'true');
         if (valueLabel) valueLabel.textContent = btn.getAttribute('data-colour-name') || '';
+        renderGalleryColour(btn.getAttribute('data-colour'));
       });
     });
   })();
