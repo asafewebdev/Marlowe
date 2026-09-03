@@ -24,10 +24,14 @@
 <a class="skip-link" href="#main-content">Skip to content</a>
 
 <!-- =====================================================================
-     ANNOUNCEMENT BAR - static, all three messages shown at once (no
-     rotation). EDIT the three <li>s below to change the messages.
+     HEADER - three stacked strips: 1) discount bar, 2) search / logo /
+     account+bag, 3) same-page nav. EDIT the three <li>s in the discount
+     bar, or the five links in .site-nav-links, to change what they say.
      ===================================================================== -->
-<div class="announcement-bar">
+
+<!-- Strip 1: discount bar - static, all three messages shown at once
+     (no rotation), stacks on mobile. -->
+<div id="top" class="announcement-bar">
   <div class="container">
     <ul class="announcement-track">
       <li>Free UK delivery on your first order</li>
@@ -37,59 +41,51 @@
   </div>
 </div>
 
-<!-- =====================================================================
-     HEADER - edit nav links / logo text here. Icons open no real
-     account/search/bag flows yet; wire hrefs or JS handlers as needed.
-     ===================================================================== -->
 <header class="site-header">
-  <div class="container">
-    <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-
-    <a href="/" class="logo">
-      <!-- EDIT: swap images/marlowe-logo.png for a new export if the logo changes -->
-      <img class="logo-img" src="images/marlowe-logo.png" alt="Marlowe London" width="900" height="338">
-    </a>
-
-    <nav class="main-nav" aria-label="Primary">
-      <ul>
-        <li><a href="#">New In</a></li>
-        <li><a href="#">Outerwear</a></li>
-        <li><a href="#">Dresses</a></li>
-        <li><a href="#">Knitwear</a></li>
-        <li><a href="#">Accessories</a></li>
-        <li><a href="#" class="is-sale">Sale</a></li>
-      </ul>
-    </nav>
-
-    <div class="header-icons">
-      <button class="icon-btn" aria-label="Search">
+  <!-- Strip 2: search (left) / logo (centred) / account + bag (right).
+       Icons open no real account/search/bag flows yet beyond the cart
+       drawer; wire the rest up as needed. -->
+  <div class="site-header-main">
+    <div class="container site-header-row">
+      <button type="button" class="icon-btn" aria-label="Search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </button>
-      <a href="#" class="icon-btn" aria-label="Account">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8.2" r="3.3"/><path d="M5 20c.6-3.6 3.6-6 7-6s6.4 2.4 7 6"/></svg>
+
+      <a href="#top" class="logo">
+        <!-- EDIT: swap images/marlowe-logo.png for a new export if the logo changes -->
+        <img class="logo-img" src="images/marlowe-logo.png" alt="Marlowe London" width="900" height="338">
       </a>
-      <a href="#" class="icon-btn" aria-label="Wishlist">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.2l-1.3-1.2C6 14.8 3 12.1 3 8.9 3 6.3 5 4.3 7.5 4.3c1.5 0 2.9.7 3.8 1.9.9-1.2 2.3-1.9 3.8-1.9 2.5 0 4.5 2 4.5 4.6 0 3.2-3 5.9-7.7 10.1L12 20.2z"/></svg>
-      </a>
-      <!-- EDIT: bag-count reflects items added via the Add to Bag button (js/main.js) -->
-      <button type="button" id="cart-trigger" class="icon-btn" aria-label="Open shopping bag, 0 items">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8h11l1 12.5h-13L6.5 8z"/><path d="M9.2 8V6.3a2.8 2.8 0 0 1 5.6 0V8"/></svg>
-        <span class="bag-count">0</span>
-      </button>
+
+      <div class="header-icons">
+        <a href="#" class="icon-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8.2" r="3.3"/><path d="M5 20c.6-3.6 3.6-6 7-6s6.4 2.4 7 6"/></svg>
+        </a>
+        <!-- EDIT: bag-count reflects items added via the Add to Bag button (js/main.js) -->
+        <button type="button" id="cart-trigger" class="icon-btn" aria-label="Open shopping bag, 0 items">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8h11l1 12.5h-13L6.5 8z"/><path d="M9.2 8V6.3a2.8 2.8 0 0 1 5.6 0V8"/></svg>
+          <span class="bag-count">0</span>
+        </button>
+      </div>
     </div>
   </div>
 
-  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile">
-    <ul>
-      <li><a href="#">New In</a></li>
-      <li><a href="#">Outerwear</a></li>
-      <li><a href="#">Dresses</a></li>
-      <li><a href="#">Knitwear</a></li>
-      <li><a href="#">Accessories</a></li>
-      <li><a href="#" class="is-sale">Sale</a></li>
-    </ul>
+  <!-- Strip 3: same-page nav - each link scrolls to a section on this
+       page (never to another URL, so nothing 404s). Collapses to a
+       "Menu" toggle below 700px. -->
+  <nav class="site-nav" aria-label="Section">
+    <div class="container site-nav-row">
+      <button type="button" id="site-nav-toggle" class="site-nav-toggle" aria-expanded="false" aria-controls="site-nav-links">
+        <span class="site-nav-toggle-lines"><span></span><span></span><span></span></span>
+        Menu
+      </button>
+      <ul id="site-nav-links" class="site-nav-links">
+        <li><a href="#top">Home</a></li>
+        <li><a href="#the-coat">The Coat</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#delivery" id="nav-delivery-link">Delivery</a></li>
+        <li><a href="#videos">Videos</a></li>
+      </ul>
+    </div>
   </nav>
 </header>
 
@@ -118,7 +114,7 @@
        .ph placeholder with a real <img>, and update copy/price/options
        to match your actual product.
        ================================================================= -->
-  <section class="product" aria-labelledby="product-title">
+  <section id="the-coat" class="product" aria-labelledby="product-title">
     <div class="container">
 
       <!-- Gallery - thumbnails run down the left on wider screens, main
@@ -409,7 +405,7 @@
   <section class="accordions" aria-label="Delivery and returns information">
     <div class="container">
 
-      <div class="accordion-item">
+      <div id="delivery" class="accordion-item">
         <h3>
           <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-delivery">
             Delivery
@@ -489,7 +485,7 @@
            (see js/main.js, socialVideos - each plays only once its
            button is clicked: preload="none", no autoplay, no forced
            sound). Until then each poster shows as a plain placeholder. -->
-      <div class="reviews-videos-wrap">
+      <div id="videos" class="reviews-videos-wrap">
         <p class="reviews-videos-label">Hear From Our Customers</p>
         <ul class="reviews-videos">
           <li class="social-video" data-video="videos/social-1.mp4" data-poster="images/social-1-thumb.jpg">

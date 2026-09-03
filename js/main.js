@@ -73,16 +73,36 @@
   })();
 
   /* -----------------------------------------------------------------------
-     Mobile navigation toggle
+     Site nav (strip 3) - "Menu" toggle below 700px; closes itself again
+     once a link is picked, since the click is about to scroll the page
+     anyway. Also opens the Delivery accordion when its nav link is used,
+     so landing there shows the actual delivery info, not a collapsed row.
   ----------------------------------------------------------------------- */
-  (function mobileNav() {
-    var toggle = document.querySelector('.nav-toggle');
-    var nav = document.getElementById('mobile-nav');
-    if (!toggle || !nav) return;
-    toggle.addEventListener('click', function () {
-      var isOpen = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', String(isOpen));
-    });
+  (function siteNav() {
+    var toggle = document.getElementById('site-nav-toggle');
+    var links = document.getElementById('site-nav-links');
+    if (toggle && links) {
+      toggle.addEventListener('click', function () {
+        var isOpen = links.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+      });
+      links.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          links.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    var deliveryLink = document.getElementById('nav-delivery-link');
+    var deliveryTrigger = document.querySelector('#delivery .accordion-trigger');
+    if (deliveryLink && deliveryTrigger) {
+      deliveryLink.addEventListener('click', function () {
+        if (deliveryTrigger.getAttribute('aria-expanded') !== 'true') {
+          deliveryTrigger.click();
+        }
+      });
+    }
   })();
 
   /* -----------------------------------------------------------------------
