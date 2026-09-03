@@ -1109,33 +1109,57 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 
 /* =========================================================================
    12. RELATED PRODUCTS
-   EDIT: once you have real photography, replace each card's
-   <div class="ph" …> with an <img src="images/…" alt="…">.
+   Mobile-first: a single-column row list (small thumbnail + info beside
+   it, like the bag drawer's line items) so long product/variant text
+   never has to fight a narrow 2-up column. From 480px up it becomes the
+   familiar vertical card grid, 2-up then 4-up from 700px.
    ========================================================================= */
 .related{ padding-block: 4rem; background: var(--surface-alt); border-block: 1px solid var(--line); }
 .related-heading{ text-align: center; margin-bottom: 2rem; }
 .related-grid{
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 480px){
+  .related-grid{ grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 }
 @media (min-width: 700px){
   .related-grid{ grid-template-columns: repeat(4, 1fr); }
 }
-.related-card{ display: flex; flex-direction: column; }
+
+.related-card{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+@media (min-width: 480px){
+  .related-card{ flex-direction: column; padding: 0; background: none; border: 0; }
+}
 .related-card img{
-  width: 100%;
+  width: 92px;
   aspect-ratio: 4/5;
   object-fit: cover;
   border: 1px solid var(--line);
-  margin-bottom: 0.8rem;
+  flex-shrink: 0;
 }
-.related-name{ font-size: var(--text-sm); font-weight: 600; margin-bottom: 0.2em; }
-.related-price{ font-size: var(--text-sm); color: var(--ink-soft); margin-bottom: 0.8rem; }
+@media (min-width: 480px){
+  .related-card img{ width: 100%; margin-bottom: 0.8rem; }
+}
+.related-card-info{ display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.related-name{ font-size: var(--text-sm); font-weight: 600; }
+.related-variant{ font-size: var(--text-xs); color: var(--ink-soft); margin-top: 0.1em; }
+.related-price{ font-size: var(--text-sm); color: var(--ink-soft); margin-top: 0.4em; }
 .related-card .btn{
-  margin-top: auto;
-  padding: 0.75em 1em;
+  margin-top: 0.6rem;
+  padding: 0.7em 1em;
   font-size: var(--text-xs);
+}
+@media (min-width: 480px){
+  .related-card .btn{ margin-top: auto; }
 }
 
 /* generic image placeholder ------------------------------------------------
