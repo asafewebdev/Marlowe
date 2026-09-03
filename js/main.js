@@ -69,24 +69,40 @@
   (function gallery() {
     var mainImg = document.getElementById('gallery-main-img');
     var thumbsWrap = document.getElementById('gallery-thumbs');
+    var prevBtn = document.getElementById('gallery-prev');
+    var nextBtn = document.getElementById('gallery-next');
     if (!mainImg || !thumbsWrap) return;
 
-    function showPhoto(src, alt) {
-      mainImg.setAttribute('src', src);
-      mainImg.setAttribute('alt', alt);
+    var currentPhotos = [];
+    var currentIndex = 0;
+
+    // Shows photo `i` of the active colourway and syncs the thumbnail
+    // rail's active state. Used by both thumbnail clicks and the arrows.
+    function showIndex(i) {
+      if (!currentPhotos.length) return;
+      currentIndex = (i + currentPhotos.length) % currentPhotos.length;
+      var photo = currentPhotos[currentIndex];
+      mainImg.setAttribute('src', photo.src);
+      mainImg.setAttribute('alt', photo.alt);
+      thumbsWrap.querySelectorAll('.thumb').forEach(function (t, idx) {
+        var isActive = idx === currentIndex;
+        t.classList.toggle('is-active', isActive);
+        if (isActive) t.setAttribute('aria-current', 'true');
+        else t.removeAttribute('aria-current');
+      });
     }
 
     // Rebuilds the thumbnail rail for a colourway and shows its first photo.
     function renderColour(colourKey) {
       var photos = GALLERY[colourKey];
       if (!photos || !photos.length) return;
+      currentPhotos = photos;
 
       thumbsWrap.innerHTML = '';
       photos.forEach(function (photo, i) {
         var btn = document.createElement('button');
-        btn.className = 'thumb' + (i === 0 ? ' is-active' : '');
+        btn.className = 'thumb';
         btn.setAttribute('aria-label', 'View ' + (i + 1));
-        if (i === 0) btn.setAttribute('aria-current', 'true');
         btn.setAttribute('data-src', photo.src);
         btn.setAttribute('data-alt', photo.alt);
 
@@ -97,21 +113,22 @@
         img.height = 800;
         btn.appendChild(img);
 
-        btn.addEventListener('click', function () {
-          thumbsWrap.querySelectorAll('.thumb').forEach(function (t) {
-            t.classList.remove('is-active');
-            t.removeAttribute('aria-current');
-          });
-          btn.classList.add('is-active');
-          btn.setAttribute('aria-current', 'true');
-          showPhoto(photo.src, photo.alt);
-        });
+        btn.addEventListener('click', function () { showIndex(i); });
 
         thumbsWrap.appendChild(btn);
       });
 
-      showPhoto(photos[0].src, photos[0].alt);
+      showIndex(0);
     }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { showIndex(currentIndex - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { showIndex(currentIndex + 1); });
+
+    // Render the default colourway on load so the arrows have photos to
+    // cycle through immediately (the static HTML thumbs are a no-JS
+    // fallback and get rebuilt here to match).
+    var activeSwatch = document.querySelector('.swatch.is-active');
+    renderColour(activeSwatch ? activeSwatch.getAttribute('data-colour') : 'latte');
 
     renderGalleryColour = renderColour;
   })();
