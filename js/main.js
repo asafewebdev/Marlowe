@@ -48,22 +48,21 @@
      as the first thumbnail/main photo when that colour is selected.
   ----------------------------------------------------------------------- */
   var GALLERY = {
-    mink: [
-      { src: 'images/coat-mink-front.jpg', alt: 'Marlowe Faux Fur Coat in Mink, front view' },
-      { src: 'images/coat-mink-back.jpg', alt: 'Marlowe Faux Fur Coat in Mink, back view' }
+    latte: [
+      { src: 'images/coat-latte-front.jpg', alt: 'Marlowe Faux Fur Coat in Latte, front view' },
+      { src: 'images/coat-latte-back.jpg', alt: 'Marlowe Faux Fur Coat in Latte, back view' }
     ],
-    ivory: [
-      { src: 'images/coat-ivory-front.jpg', alt: 'Marlowe Faux Fur Coat in Ivory, front view' },
-      { src: 'images/coat-ivory-back.jpg', alt: 'Marlowe Faux Fur Coat in Ivory, back view' }
+    winterwhite: [
+      { src: 'images/coat-winterwhite-front.jpg', alt: 'Marlowe Faux Fur Coat in Winter White, front view' },
+      { src: 'images/coat-winterwhite-back.jpg', alt: 'Marlowe Faux Fur Coat in Winter White, back view' }
     ],
-    noir: [
-      { src: 'images/coat-noir-front.jpg', alt: 'Marlowe Faux Fur Coat in Noir, front view' },
-      { src: 'images/coat-noir-back.jpg', alt: 'Marlowe Faux Fur Coat in Noir, back view' }
+    espresso: [
+      { src: 'images/coat-espresso-front.jpg', alt: 'Marlowe Faux Fur Coat in Espresso Black, front view' },
+      { src: 'images/coat-espresso-back.jpg', alt: 'Marlowe Faux Fur Coat in Espresso Black, back view' }
     ],
-    ocelot: [
-      { src: 'images/coat-ocelot-front.jpg', alt: 'Marlowe Faux Fur Coat in Ocelot, front view' },
-      { src: 'images/coat-ocelot-alt.jpg', alt: 'Marlowe Faux Fur Coat in Ocelot, alternate front view' },
-      { src: 'images/coat-ocelot-back.jpg', alt: 'Marlowe Faux Fur Coat in Ocelot, back view' }
+    coffee: [
+      { src: 'images/coat-coffee-front.jpg', alt: 'Marlowe Faux Fur Coat in Coffee Brown, front view' },
+      { src: 'images/coat-coffee-back.jpg', alt: 'Marlowe Faux Fur Coat in Coffee Brown, back view' }
     ]
   };
 

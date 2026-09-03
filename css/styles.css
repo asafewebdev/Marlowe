@@ -507,15 +507,15 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   border-radius: 50%;
   border: 1px solid rgba(0,0,0,0.12);
 }
-.swatch[data-colour="ivory"] .swatch-fill{ background: #EFE9DD; }
-.swatch[data-colour="noir"] .swatch-fill{ background: #221F1D; }
-.swatch[data-colour="ocelot"] .swatch-fill{
+.swatch[data-colour="winterwhite"] .swatch-fill{ background: #EFE9DD; }
+.swatch[data-colour="espresso"] .swatch-fill{ background: #241C17; }
+.swatch[data-colour="coffee"] .swatch-fill{
+  /* Coffee Brown's fabric has a subtle tiger-stripe texture, echoed here */
   background:
-    radial-gradient(circle at 30% 30%, transparent 30%, #3A2B1E 31% 45%, transparent 46%) 0 0/10px 10px,
-    radial-gradient(circle at 70% 70%, transparent 30%, #3A2B1E 31% 45%, transparent 46%) 5px 5px/10px 10px,
-    #C99C56;
+    repeating-linear-gradient(115deg, transparent 0 3px, #2E1F16 3px 5px),
+    #5C4433;
 }
-.swatch[data-colour="mink"] .swatch-fill{ background: #6E5849; }
+.swatch[data-colour="latte"] .swatch-fill{ background: #9C8268; }
 .swatch.is-active{ border-color: var(--ink); }
 .swatch:focus-visible{ outline-offset: 3px; }
 
