@@ -22,16 +22,12 @@ npx serve .
 
 ## What to edit first
 
-1. **Photography** - the main product gallery now uses real photos, one
-   front/back set per colourway, defined in the `GALLERY` object near the
-   top of `js/main.js` (files live in `images/coat-<colour>-*.jpg`). Add,
-   reorder or replace entries there to change what shows up; clicking a
-   colour swatch re-renders the gallery from that data automatically.
-   Everywhere else, a grey/white diagonal-pattern box is still a
-   placeholder - search `index.html` for `<div class="ph"` and replace
-   each one with a real `<img src="images/…" alt="…">`. Remaining
-   placeholders: 2 review photos. Suggested sizes: product shots
-   1200×1500px (4:5), thumbnails same ratio.
+1. **Photography** - the product gallery uses real photos, one front/back
+   set per colourway, defined in the `GALLERY` object near the top of
+   `js/main.js` (files live in `images/coat-<colour>-*.jpg`). Add, reorder
+   or replace entries there to change what shows up; clicking a colour
+   swatch re-renders the gallery from that data automatically. Suggested
+   sizes: product shots 1200×1500px (4:5), thumbnails same ratio.
 2. **Price, colours, sizes** - in the `.buybox` block near the top of
    `index.html`. Toggle the `disabled` attribute on a `.size-btn` to mark a
    size out of stock.
@@ -39,10 +35,14 @@ npx serve .
    accordions are all plain text in `index.html`, grouped under clearly
    labelled `<section>`s.
 4. **Reviews** - the summary stats (average, count, per-star bars) and each
-   `.review-card` are static markup for now. Swap them for a live feed from
-   your reviews provider (Yotpo, Judge.me, Trustpilot, etc.) when ready, or
-   keep hand-curating them. Cards with the `hidden` attribute are revealed by
-   the "Load more reviews" button.
+   `.review-card` are static markup for now. The five kept here are written
+   to answer specific buying objections (warmth, price, fit, fur quality,
+   whether it matches the photos) - keep that pattern if you add more.
+   Swap them for a live feed from your reviews provider (Yotpo, Judge.me,
+   Trustpilot, etc.) when ready, or keep hand-curating them. Cards with the
+   `hidden` attribute are revealed by "Load more reviews". "Write a Review"
+   only adds the submission to this page (see `writeReview()` in
+   `js/main.js`) - point it at your reviews provider when you have one.
 5. **Colour palette / type** - all design tokens (colours, fonts, spacing)
    live at the top of `css/styles.css` under `:root`, so a re-theme starts
    there.

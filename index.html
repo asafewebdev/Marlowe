@@ -458,7 +458,10 @@
        EDIT: replace with your live review feed. Update the average score,
        total count and the five .bar-fill widths/counts to match. Each
        .review-card can be duplicated for more reviews - add [hidden] to
-       any card you want tucked behind "Load more reviews".
+       any card you want tucked behind "Load more reviews". The five kept
+       here are written to answer the objections a shopper is most likely
+       to have before buying (warmth, price, fit, fur quality, whether it
+       matches the photos) - keep that pattern if you add more.
        ================================================================= -->
   <section id="reviews" class="reviews">
     <div class="container">
@@ -482,7 +485,41 @@
         </div>
       </div>
 
-      <ul class="reviews-list">
+      <div class="write-review">
+        <button type="button" id="write-review-toggle" class="btn btn-secondary" aria-expanded="false" aria-controls="review-form">Write a Review</button>
+
+        <!-- EDIT: submitting only adds the review to this page's list
+             (nothing is sent anywhere) - point the form at your reviews
+             provider or backend when you have one. -->
+        <form id="review-form" class="review-form" hidden>
+          <div class="review-form-row">
+            <span class="review-form-label">Your rating</span>
+            <div id="review-rating-input" class="review-rating-input" role="radiogroup" aria-label="Your rating">
+              <button type="button" data-value="1" aria-label="1 star" aria-pressed="false">★</button>
+              <button type="button" data-value="2" aria-label="2 stars" aria-pressed="false">★</button>
+              <button type="button" data-value="3" aria-label="3 stars" aria-pressed="false">★</button>
+              <button type="button" data-value="4" aria-label="4 stars" aria-pressed="false">★</button>
+              <button type="button" data-value="5" aria-label="5 stars" aria-pressed="false">★</button>
+            </div>
+          </div>
+          <div class="review-form-row">
+            <label for="review-name" class="review-form-label">Name</label>
+            <input id="review-name" type="text" required>
+          </div>
+          <div class="review-form-row">
+            <label for="review-title-input" class="review-form-label">Review title</label>
+            <input id="review-title-input" type="text" required>
+          </div>
+          <div class="review-form-row">
+            <label for="review-body-input" class="review-form-label">Your review</label>
+            <textarea id="review-body-input" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Review</button>
+          <p id="review-form-status" class="review-form-status" role="status"></p>
+        </form>
+      </div>
+
+      <ul id="reviews-list" class="reviews-list">
 
         <li class="review-card">
           <div class="review-top">
@@ -493,12 +530,9 @@
               Verified Purchase
             </span>
           </div>
-          <p class="review-title">Exactly like the pictures, and warmer than expected</p>
-          <p class="review-meta">Olivia H., London · 27 August 2026</p>
-          <p class="review-body">I was worried the collar would look bulky in real life, but it's incredible: really structured without feeling heavy. Wore it to a friend's birthday over a plain black dress and got so many compliments. True to size, I'm a UK size M and got my usual size.</p>
-          <div class="review-photos">
-            <div class="ph" data-label="" aria-hidden="true"></div>
-          </div>
+          <p class="review-title">Genuinely warm, not just for show</p>
+          <p class="review-meta">Amara O., Bristol · 2 August 2026</p>
+          <p class="review-body">I was sceptical a faux fur coat would hold up through a proper cold snap, but I wore this one through February and didn't need a scarf as well. The collar earns its size, it actually blocks the wind.</p>
         </li>
 
         <li class="review-card">
@@ -510,9 +544,9 @@
               Verified Purchase
             </span>
           </div>
-          <p class="review-title">The belt makes this coat</p>
-          <p class="review-meta">Chloe M., Leeds · 21 August 2026</p>
-          <p class="review-body">Have wanted a fur-collar coat for years and finally took the plunge with Marlowe. The self-tie belt gives it real shape instead of just swamping you, which is what put me off similar coats before. Genuinely feels like a much more expensive piece.</p>
+          <p class="review-title">Worth every penny</p>
+          <p class="review-meta">Isabelle R., Cardiff · 5 July 2026</p>
+          <p class="review-body">Hesitated on the price for a while, wondering if it could really be worth it. The quality settled that within a day: dense pile, no shedding, and hardware that feels solid rather than flimsy. Ordered the espresso black and it's wonderfully sleek for evening.</p>
         </li>
 
         <li class="review-card">
@@ -524,26 +558,9 @@
               Verified Purchase
             </span>
           </div>
-          <p class="review-title">Beautiful coat, runs slightly big</p>
+          <p class="review-title">Fits true to the size chart</p>
           <p class="review-meta">Sophie T., Manchester · 14 August 2026</p>
-          <p class="review-body">Gorgeous quality and so soft. I'd normally say true to size but I found the 12 a touch roomy on the shoulders, so I'd size down if you like a closer fit. Kept it anyway because the oversized look works with the style.</p>
-        </li>
-
-        <li class="review-card">
-          <div class="review-top">
-            <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
-            <span class="visually-hidden">5 out of 5 stars</span>
-            <span class="review-verified">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
-              Verified Purchase
-            </span>
-          </div>
-          <p class="review-title">Warmest coat I own</p>
-          <p class="review-meta">Amara O., Bristol · 2 August 2026</p>
-          <p class="review-body">Wore this through a proper cold snap in February and it was the first time in years I didn't need a scarf as well: that collar does its job. The mink colourway photographs slightly lighter than it looks in person; richer and more brown in daylight.</p>
-          <div class="review-photos">
-            <div class="ph" data-label="" aria-hidden="true"></div>
-          </div>
+          <p class="review-body">Always nervous ordering a coat online without trying it on first. I went with my usual size against the measurements in the size chart and it fits exactly as described, relaxed through the body as stated, so I know to size down if I ever want it closer fitting.</p>
         </li>
 
         <!-- Reviews below are revealed by "Load more reviews" (js/main.js) -->
@@ -556,9 +573,9 @@
               Verified Purchase
             </span>
           </div>
-          <p class="review-title">Elevates a plain outfit instantly</p>
+          <p class="review-title">Doesn't look or feel like cheap faux fur</p>
           <p class="review-meta">Grace P., Edinburgh · 19 July 2026</p>
-          <p class="review-body">This is the coat that gets worn over everything now. Jeans and a jumper suddenly look put together. The lining is lovely too: it doesn't catch on jumpers when you put it on, unlike some faux fur pieces I've owned.</p>
+          <p class="review-body">I've bought faux fur before that looked obviously synthetic, in photos and in person. This isn't that. The pile is dense, the colour is rich rather than flat, and it hasn't matted after regular wear.</p>
         </li>
 
         <li class="review-card" hidden>
@@ -570,37 +587,9 @@
               Verified Purchase
             </span>
           </div>
-          <p class="review-title">Worth every penny</p>
-          <p class="review-meta">Isabelle R., Cardiff · 5 July 2026</p>
-          <p class="review-body">Hesitated on the price for a while but the quality justifies it completely. Dense pile, doesn't shed, and the belt hardware feels solid rather than flimsy. Ordered the noir and it's wonderfully sleek for evening.</p>
-        </li>
-
-        <li class="review-card" hidden>
-          <div class="review-top">
-            <span class="star-rating star-rating--sm" style="--pct:60%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
-            <span class="visually-hidden">3 out of 5 stars</span>
-            <span class="review-verified">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
-              Verified Purchase
-            </span>
-          </div>
-          <p class="review-title">Lovely coat, delivery was slow</p>
-          <p class="review-meta">Freya W., Birmingham · 28 June 2026</p>
-          <p class="review-body">No complaints about the coat itself: beautifully made, and the collar is even more dramatic in person. Marked down a star only because delivery took longer than the estimate at checkout. Customer service did keep me updated throughout.</p>
-        </li>
-
-        <li class="review-card" hidden>
-          <div class="review-top">
-            <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
-            <span class="visually-hidden">5 out of 5 stars</span>
-            <span class="review-verified">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
-              Verified Purchase
-            </span>
-          </div>
-          <p class="review-title">My new go-to for the school run</p>
+          <p class="review-title">Looks exactly like the photos, if not better</p>
           <p class="review-meta">Megan D., Glasgow · 11 June 2026</p>
-          <p class="review-body">Didn't expect to reach for this over my usual puffer but I do, every time. Easy to throw on, doesn't need ironing, and the pockets are deep enough for my phone and keys. The ocelot print is more subtle in person than photos suggest, in a good way.</p>
+          <p class="review-body">Always a bit nervous ordering outerwear online in case the colour looks different in real life. Mine arrived exactly as pictured, if anything richer in daylight. Easy to throw on for the school run and doesn't need ironing.</p>
         </li>
 
       </ul>

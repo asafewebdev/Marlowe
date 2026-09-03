@@ -462,6 +462,84 @@
   })();
 
   /* -----------------------------------------------------------------------
+     Write a Review - EDIT: submitting only builds a new .review-card and
+     prepends it to the list on this page; nothing is sent anywhere. Point
+     this at a real backend/reviews provider when you have one.
+  ----------------------------------------------------------------------- */
+  (function writeReview() {
+    var toggleBtn = document.getElementById('write-review-toggle');
+    var form = document.getElementById('review-form');
+    var ratingGroup = document.getElementById('review-rating-input');
+    var status = document.getElementById('review-form-status');
+    var list = document.getElementById('reviews-list');
+    if (!toggleBtn || !form || !ratingGroup || !list) return;
+
+    var rating = 0;
+    var ratingButtons = ratingGroup.querySelectorAll('button');
+
+    toggleBtn.addEventListener('click', function () {
+      var isOpen = form.hidden;
+      form.hidden = !isOpen;
+      toggleBtn.setAttribute('aria-expanded', String(isOpen));
+      toggleBtn.textContent = isOpen ? 'Cancel Review' : 'Write a Review';
+      if (isOpen) form.querySelector('#review-name').focus();
+    });
+
+    ratingButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        rating = parseInt(btn.getAttribute('data-value'), 10);
+        ratingButtons.forEach(function (b) {
+          var active = parseInt(b.getAttribute('data-value'), 10) <= rating;
+          b.classList.toggle('is-active', active);
+          b.setAttribute('aria-pressed', String(active));
+        });
+      });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (rating === 0) {
+        if (status) {
+          status.textContent = 'Please choose a star rating before submitting.';
+          status.classList.add('is-visible', 'is-error');
+        }
+        return;
+      }
+
+      var name = form.querySelector('#review-name').value.trim();
+      var title = form.querySelector('#review-title-input').value.trim();
+      var body = form.querySelector('#review-body-input').value.trim();
+      var today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+      var card = document.createElement('li');
+      card.className = 'review-card';
+      card.innerHTML =
+        '<div class="review-top">' +
+          '<span class="star-rating star-rating--sm" style="--pct:' + (rating * 20) + '%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>' +
+          '<span class="visually-hidden">' + rating + ' out of 5 stars</span>' +
+        '</div>' +
+        '<p class="review-title"></p>' +
+        '<p class="review-meta"></p>' +
+        '<p class="review-body"></p>';
+      card.querySelector('.review-title').textContent = title;
+      card.querySelector('.review-meta').textContent = name + ' · ' + today;
+      card.querySelector('.review-body').textContent = body;
+
+      list.insertBefore(card, list.firstChild);
+
+      form.reset();
+      rating = 0;
+      ratingButtons.forEach(function (b) { b.classList.remove('is-active'); b.setAttribute('aria-pressed', 'false'); });
+      if (status) {
+        status.textContent = 'Thank you, your review has been posted below.';
+        status.classList.remove('is-error');
+        status.classList.add('is-visible');
+      }
+      card.scrollIntoView({ block: 'center', behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
+  })();
+
+  /* -----------------------------------------------------------------------
      Newsletter signup - front-end only. Wire `action`/fetch to your ESP
      (Klaviyo, Mailchimp, etc.) where marked below.
   ----------------------------------------------------------------------- */
