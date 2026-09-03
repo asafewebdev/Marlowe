@@ -44,6 +44,7 @@
   --gutter: 1.5rem;
   --radius-sm: 2px;
   --radius-md: 3px;
+  --radius-pill: 999px;
 }
 
 /* -------------------------------------------------------------------------
@@ -698,6 +699,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   height: 44px;
   padding-inline: 0.4em;
   border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
   background: var(--surface);
   font-size: var(--text-sm);
   font-weight: 600;
@@ -723,7 +725,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   text-transform: uppercase;
   letter-spacing: 0.08em;
   border: 1px solid var(--ink);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-pill);
   transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 .btn-primary{
