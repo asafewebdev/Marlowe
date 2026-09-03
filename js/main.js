@@ -148,7 +148,16 @@
 
   /* -----------------------------------------------------------------------
      Size selector + Add to Bag validation
+     EDIT: figures below feed the "Product Measurements" box that appears
+     once a size is picked - update them to match your actual spec sheet.
   ----------------------------------------------------------------------- */
+  var SIZE_MEASUREMENTS = {
+    S:  { shoulder: '15.75"', bust: '43.31"', length: '35.43"', sleeve: '24.41"' },
+    M:  { shoulder: '16.14"', bust: '44.88"', length: '35.43"', sleeve: '24.41"' },
+    L:  { shoulder: '16.54"', bust: '46.46"', length: '35.43"', sleeve: '24.80"' },
+    XL: { shoulder: '16.93"', bust: '48.03"', length: '35.43"', sleeve: '25.20"' }
+  };
+
   (function sizeAndBag() {
     var sizeButtons = document.querySelectorAll('.size-btn:not([disabled])');
     var sizeValueLabel = document.getElementById('selected-size');
@@ -156,7 +165,20 @@
     var addToBagBtn = document.getElementById('add-to-bag');
     var bagCount = document.querySelector('.bag-count');
     var toast = document.getElementById('toast');
+    var measurementsBox = document.getElementById('measurements');
+    var measurementsSize = document.getElementById('measurements-size');
     var selectedSize = null;
+
+    function renderMeasurements(size) {
+      var data = SIZE_MEASUREMENTS[size];
+      if (!data || !measurementsBox) return;
+      if (measurementsSize) measurementsSize.textContent = 'Size ' + size;
+      document.getElementById('measurement-shoulder').textContent = data.shoulder;
+      document.getElementById('measurement-bust').textContent = data.bust;
+      document.getElementById('measurement-length').textContent = data.length;
+      document.getElementById('measurement-sleeve').textContent = data.sleeve;
+      measurementsBox.hidden = false;
+    }
 
     sizeButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -164,8 +186,9 @@
         btn.classList.add('is-active');
         btn.setAttribute('aria-pressed', 'true');
         selectedSize = btn.textContent.trim();
-        if (sizeValueLabel) sizeValueLabel.textContent = 'UK ' + selectedSize;
+        if (sizeValueLabel) sizeValueLabel.textContent = selectedSize;
         if (sizeError) sizeError.classList.remove('is-visible');
+        renderMeasurements(selectedSize);
       });
     });
 
@@ -182,7 +205,7 @@
           var current = parseInt(bagCount.textContent, 10) || 0;
           bagCount.textContent = String(current + 1);
         }
-        showToast('Added to your bag, Size UK ' + selectedSize);
+        showToast('Added to your bag, Size ' + selectedSize);
       });
     }
 

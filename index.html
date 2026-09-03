@@ -167,7 +167,7 @@
         <div class="option-block">
           <div class="option-label">
             <span>Colour</span>
-            <span class="option-value">Latte <span id="selected-colour" class="visually-hidden">Latte</span></span>
+            <span class="option-value" id="selected-colour">Latte</span>
           </div>
           <div class="swatches" role="group" aria-label="Colour">
             <button class="swatch" data-colour="winterwhite" data-colour-name="Winter White" aria-pressed="false" aria-label="Winter White"><span class="swatch-fill"></span></button>
@@ -181,17 +181,43 @@
         <div class="option-block">
           <div class="option-label">
             <span>Size <span id="selected-size"></span></span>
-            <a href="#" class="size-guide-link">Size Guide</a>
+            <a href="#" class="size-guide-link">Size Chart</a>
           </div>
           <div class="sizes" role="group" aria-label="Size">
-            <button class="size-btn" aria-pressed="false">6</button>
-            <button class="size-btn" disabled aria-label="Size 8, out of stock">8</button>
-            <button class="size-btn" aria-pressed="false">10</button>
-            <button class="size-btn" aria-pressed="false">12</button>
-            <button class="size-btn" aria-pressed="false">14</button>
-            <button class="size-btn" aria-pressed="false">16</button>
+            <button class="size-btn" aria-pressed="false">S</button>
+            <button class="size-btn" aria-pressed="false">M</button>
+            <button class="size-btn" aria-pressed="false">L</button>
+            <button class="size-btn" aria-pressed="false">XL</button>
           </div>
           <p class="size-error">Please select a size before adding to your bag.</p>
+
+          <!-- Product Measurements - EDIT: values come from SIZE_MEASUREMENTS
+               in js/main.js; this block fills in and appears once a size
+               is picked above. -->
+          <div class="measurements" id="measurements" hidden>
+            <div class="measurements-head">
+              <span class="measurements-title">Product Measurements</span>
+              <span class="measurements-size" id="measurements-size"></span>
+            </div>
+            <dl class="measurements-grid">
+              <div class="measurements-row">
+                <dt>Shoulder Width</dt>
+                <dd id="measurement-shoulder"></dd>
+              </div>
+              <div class="measurements-row">
+                <dt>Bust Size</dt>
+                <dd id="measurement-bust"></dd>
+              </div>
+              <div class="measurements-row">
+                <dt>Length</dt>
+                <dd id="measurement-length"></dd>
+              </div>
+              <div class="measurements-row">
+                <dt>Sleeve Length</dt>
+                <dd id="measurement-sleeve"></dd>
+              </div>
+            </dl>
+          </div>
         </div>
 
         <!-- EDIT: wire this button to your real cart/checkout logic -->
@@ -296,7 +322,7 @@
         <li>Fully lined in a soft, satin-touch fabric for effortless on-and-off</li>
       </ul>
       <p class="description-copy">Wear it as the last word over head-to-toe black for evening, or cinch the belt over jeans and a roll-neck for daytime. The Mayfair is built to be the coat you reach for first, from the last cold snap in March to the first frost in November.</p>
-      <p class="description-copy">Model wears a UK 10 and is 5'9" (175cm). The fit is intentionally relaxed through the body; size down for a closer silhouette.</p>
+      <p class="description-copy">Model wears a UK size M and is 5'9" (175cm). The fit is intentionally relaxed through the body; size down for a closer silhouette.</p>
     </div>
   </section>
 
@@ -424,7 +450,7 @@
           </div>
           <p class="review-title">Exactly like the pictures, and warmer than expected</p>
           <p class="review-meta">Olivia H., London · 27 August 2026</p>
-          <p class="review-body">I was worried the collar would look bulky in real life, but it's incredible: really structured without feeling heavy. Wore it to a friend's birthday over a plain black dress and got so many compliments. True to size, I'm a UK 10 and got my usual size.</p>
+          <p class="review-body">I was worried the collar would look bulky in real life, but it's incredible: really structured without feeling heavy. Wore it to a friend's birthday over a plain black dress and got so many compliments. True to size, I'm a UK size M and got my usual size.</p>
           <div class="review-photos">
             <div class="ph" data-label="" aria-hidden="true"></div>
           </div>

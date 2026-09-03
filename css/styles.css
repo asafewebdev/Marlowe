@@ -202,18 +202,35 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: var(--gutter);
-  min-height: 100px; /* grown alongside .logo-img so the enlarged logo keeps breathing room */
+  gap: 0.75rem;
+  min-height: 68px; /* mobile-first: compact so logo + icons + menu button all fit narrow screens */
+}
+@media (min-width: 480px){
+  .site-header .container{ gap: var(--gutter); }
+}
+@media (min-width: 900px){
+  .site-header .container{ min-height: 100px; } /* full height once the logo is at its full size below */
 }
 
 .logo{
   display: inline-flex;
   align-items: center;
+  min-width: 0; /* lets the logo shrink instead of forcing the grid track wide */
 }
 .logo-img{
-  height: 66px; /* 130% of 51px (chained 130% increases from the original 30px) */
+  /* Mobile-first: start small so the logo never crowds out the menu
+     button/icons on a narrow screen, then scale up with viewport width.
+     EDIT the three heights below together to keep it in proportion. */
+  height: 34px;
   width: auto;
   display: block;
+  max-width: 100%;
+}
+@media (min-width: 480px){
+  .logo-img{ height: 44px; }
+}
+@media (min-width: 900px){
+  .logo-img{ height: 66px; }
 }
 
 .main-nav{
@@ -600,6 +617,55 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   display: none;
 }
 .size-error.is-visible{ display: block; }
+
+/* Product Measurements - light grey spec box shown once a size is picked.
+   EDIT the figures in js/main.js (SIZE_MEASUREMENTS), not here. */
+.measurements{
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.measurements-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+}
+.measurements-title{
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.measurements-size{
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--ink);
+}
+.measurements-grid{ display: grid; gap: 0; margin: 0; }
+.measurements-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: 0.5rem;
+}
+.measurements-row + .measurements-row{ border-top: 1px solid var(--line); }
+.measurements-row dt{
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+.measurements-row dd{
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--ink);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
 
 /* =========================================================================
    7. TRUST BADGES
