@@ -446,20 +446,34 @@
   })();
 
   /* -----------------------------------------------------------------------
-     Reviews - "Load more" reveals additional hidden review cards.
-     EDIT: swap the [hidden] markup in index.html for your real dataset,
-     or replace this block with a fetch() call to your reviews API.
+     Customer videos - lazy load: nothing but the poster/play button
+     exists until clicked, so no video downloads until the visitor asks
+     for it. No autoplay, no forced sound - the video only starts because
+     of the click that built it.
   ----------------------------------------------------------------------- */
-  (function reviewsLoadMore() {
-    var button = document.getElementById('load-more-reviews');
-    if (!button) return;
-    button.addEventListener('click', function () {
-      var hidden = document.querySelectorAll('.review-card[hidden]');
-      var batch = Array.prototype.slice.call(hidden, 0, 3);
-      batch.forEach(function (card) { card.removeAttribute('hidden'); });
-      if (document.querySelectorAll('.review-card[hidden]').length === 0) {
-        button.setAttribute('hidden', '');
-      }
+  (function socialVideos() {
+    document.querySelectorAll('.social-video').forEach(function (wrap) {
+      var playBtn = wrap.querySelector('.social-video-play');
+      if (!playBtn) return;
+      playBtn.addEventListener('click', function () {
+        var src = wrap.getAttribute('data-video');
+        var poster = wrap.getAttribute('data-poster');
+        if (!src) return;
+
+        var video = document.createElement('video');
+        video.setAttribute('controls', '');
+        video.setAttribute('preload', 'none');
+        video.setAttribute('playsinline', '');
+        if (poster) video.setAttribute('poster', poster);
+        var source = document.createElement('source');
+        source.src = src;
+        source.type = 'video/mp4';
+        video.appendChild(source);
+
+        wrap.innerHTML = '';
+        wrap.appendChild(video);
+        video.play();
+      });
     });
   })();
 
@@ -516,13 +530,15 @@
       var card = document.createElement('li');
       card.className = 'review-card';
       card.innerHTML =
-        '<div class="review-top">' +
-          '<span class="star-rating star-rating--sm" style="--pct:' + (rating * 20) + '%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>' +
-          '<span class="visually-hidden">' + rating + ' out of 5 stars</span>' +
-        '</div>' +
-        '<p class="review-title"></p>' +
-        '<p class="review-meta"></p>' +
-        '<p class="review-body"></p>';
+        '<div class="review-content">' +
+          '<div class="review-top">' +
+            '<span class="star-rating star-rating--sm" style="--pct:' + (rating * 20) + '%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>' +
+            '<span class="visually-hidden">' + rating + ' out of 5 stars</span>' +
+          '</div>' +
+          '<p class="review-title"></p>' +
+          '<p class="review-meta"></p>' +
+          '<p class="review-body"></p>' +
+        '</div>';
       card.querySelector('.review-title').textContent = title;
       card.querySelector('.review-meta').textContent = name + ' · ' + today;
       card.querySelector('.review-body').textContent = body;

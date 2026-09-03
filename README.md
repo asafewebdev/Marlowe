@@ -1,6 +1,6 @@
 # Marlowe - Product Landing Page
 
-A single-product landing page for **The Mayfair Belted Faux Fur Coat**, built with
+A single-product landing page for **The Marlowe Faux Fur Coat**, built with
 plain HTML, CSS and JavaScript (no build step, no dependencies).
 
 ## Files
@@ -34,23 +34,32 @@ npx serve .
 3. **Copy** - At a Glance, Description, Product Details & Care, Delivery/Returns
    accordions are all plain text in `index.html`, grouped under clearly
    labelled `<section>`s.
-4. **Reviews** - the summary stats (average, count, per-star bars) and each
-   `.review-card` are static markup for now. The five kept here are written
-   to answer specific buying objections (warmth, price, fit, fur quality,
-   whether it matches the photos) - keep that pattern if you add more.
-   Swap them for a live feed from your reviews provider (Yotpo, Judge.me,
-   Trustpilot, etc.) when ready, or keep hand-curating them. Cards with the
-   `hidden` attribute are revealed by "Load more reviews". "Write a Review"
-   only adds the submission to this page (see `writeReview()` in
-   `js/main.js`) - point it at your reviews provider when you have one.
+4. **Reviews** - three layers inside `#reviews`:
+   - *Summary*: average score and the five `.bar-fill` widths/counts are
+     static markup - update them to match your real feed.
+   - *Customer videos*: four click-to-play clips. Drop files in as
+     `videos/social-<n>.mp4` and `images/social-<n>-thumb.jpg` (see
+     `videos/README.md`) and they just work - no code changes needed.
+     Nothing downloads until a visitor clicks play (`preload="none"`,
+     built in `js/main.js`, `socialVideos()`).
+   - *Written reviews*: each `.review-card` has a real customer photo
+     (`images/review-1.jpg`/`.webp` through `review-8`). Swap the whole
+     layer for a live feed from your reviews provider (Yotpo, Judge.me,
+     Trustpilot, etc.) when ready, or keep hand-curating it. "Load more
+     reviews" is visual only for now, nothing is hidden behind it.
+     "Write a Review" only adds the submission to this page (see
+     `writeReview()` in `js/main.js`) - point it at your reviews provider
+     when you have one.
 5. **Colour palette / type** - all design tokens (colours, fonts, spacing)
    live at the top of `css/styles.css` under `:root`, so a re-theme starts
    there.
 
 ## Things that are stubbed on purpose
 
-- **Add to Bag** only updates the header bag counter and shows a confirmation
-  toast - wire it to your real cart/checkout in `js/main.js`.
+- **Add to Bag / "We Think You'll Like"** add real items to an in-memory
+  bag drawer (see the `cart()` block in `js/main.js`) that resets on
+  refresh - no items are actually reserved or ordered. Wire `addItem`/
+  `removeItem`/the Checkout button to your real cart/checkout API.
 - **Newsletter form** shows a success message but doesn't send anywhere -
   point it at your email service provider (Klaviyo, Mailchimp, …).
 - **Header search / account** icons and most footer links are placeholder

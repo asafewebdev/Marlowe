@@ -1024,6 +1024,51 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 /* Write a Review - EDIT: js/main.js only adds the submitted review to
    this page (nothing is sent anywhere); wire it to a real backend or
    reviews provider when you have one. */
+/* Layer 2: customer videos. EDIT: once videos/social-<n>.mp4 and
+   images/social-<n>-thumb.jpg exist, swap each .ph poster for a real
+   <img> - the play button and click-to-load behaviour don't change. */
+.reviews-videos-wrap{ margin-bottom: 3rem; }
+.reviews-videos-label{
+  text-align: center;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin-bottom: 1.25rem;
+}
+.reviews-videos{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+}
+@media (min-width: 700px){
+  .reviews-videos{ grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+}
+.social-video{
+  position: relative;
+  aspect-ratio: 9 / 16;
+  background: var(--ink);
+  overflow: hidden;
+}
+.social-video-poster{ position: absolute; inset: 0; }
+.social-video img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+.social-video-play{
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  border: 0;
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+.social-video-play svg{ width: 18px; height: 18px; margin-left: 2px; }
+.social-video video{ width: 100%; height: 100%; object-fit: cover; display: block; }
+
 .write-review{ text-align: center; margin-bottom: 3rem; }
 .review-form{
   max-width: 480px;
@@ -1080,12 +1125,20 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 
 .reviews-list{ display: grid; gap: 1.75rem; margin-bottom: 2rem; }
 .review-card{
+  display: flex;
+  gap: 1.1rem;
   padding-bottom: 1.75rem;
   border-bottom: 1px solid var(--line);
-  display: grid;
-  gap: 0.6rem;
 }
 .review-card[hidden]{ display: none; }
+.review-photo{
+  width: 84px;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.review-content{ flex: 1; min-width: 0; display: grid; gap: 0.6rem; }
 .review-top{
   display: flex;
   flex-wrap: wrap;
