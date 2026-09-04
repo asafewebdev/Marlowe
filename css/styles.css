@@ -500,14 +500,6 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 
 /* -- Buy box -- */
 .buybox{ max-width: 480px; }
-.buybox-brand{
-  font-size: var(--text-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-weight: 700;
-  color: var(--ink-soft);
-  margin-bottom: 0.4em;
-}
 .buybox-title{
   font-family: var(--font-display);
   font-weight: 500;
