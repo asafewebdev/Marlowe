@@ -534,6 +534,18 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   margin-bottom: 1.1rem;
 }
 
+/* Rating link + promo badge used to be two bare inline elements with
+   only a collapsed whitespace gap between them, so the badge crowded
+   right up against the rating - a real flex row with a gap fixes that,
+   while still wrapping the badge to its own (flush-left) line on very
+   narrow screens instead of leaving a stray left margin there. */
+.rating-promo-row{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
 .buybox-rating{
   display: inline-flex;
   align-items: center;
@@ -541,7 +553,6 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   background: none;
   border: 0;
   padding: 0;
-  margin-bottom: 1rem;
 }
 /* Fractional star rating - accurate to one decimal (e.g. 4.8/5) using a
    coloured overlay clipped to a percentage width over a muted track. */
@@ -583,7 +594,6 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   background: var(--accent-tint);
   border: 1px solid var(--accent);
   padding: 0.4em 0.8em;
-  margin-bottom: 0.85rem;
 }
 
 .buybox-price{
