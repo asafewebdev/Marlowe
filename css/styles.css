@@ -121,6 +121,14 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   text-wrap: balance;
   letter-spacing: 0.01em;
 }
+/* Fraunces' display-font ampersand is a heavily stylised loop that sits
+   oddly against the rest of a heading - swap just that character back
+   to the plain body-font glyph where a heading needs an "&". */
+.section-heading .amp{
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 600;
+}
 
 /* =========================================================================
    3. ANNOUNCEMENT BAR
