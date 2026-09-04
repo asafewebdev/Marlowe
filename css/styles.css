@@ -503,10 +503,23 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .buybox-title{
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: var(--text-2xl);
+  /* Fluid, calibrated to "Belted Faux Fur Coat" (~9.62px of width per
+     1px of font-size in this typeface/weight) against the buybox's own
+     measured width at every breakpoint, so it always fits on one line
+     up to the site's normal 2.25rem (36px) size - never forced wrapping,
+     never overflowing. The buybox column narrows sharply right at the
+     900px breakpoint (two-column layout kicks in), so that range gets
+     its own smaller clamp below rather than one formula for all sizes.
+     overflow/ellipsis are a safety net only - sizing shouldn't need it. */
+  font-size: clamp(1.625rem, calc(10vw - 0.375rem), var(--text-2xl));
   line-height: 1.15;
-  text-wrap: balance;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-bottom: 0.3rem;
+}
+@media (min-width: 900px){
+  .buybox-title{ font-size: clamp(1.8rem, calc(3.6vw - 0.225rem), var(--text-2xl)); }
 }
 .buybox-subheadline{
   font-size: var(--text-md);
