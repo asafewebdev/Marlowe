@@ -77,7 +77,11 @@ body{
 
 img{ max-width: 100%; display: block; }
 a{ color: inherit; text-decoration: none; }
-button{ font-family: inherit; cursor: pointer; }
+/* color:inherit here matches the `a` rule above - without it, a
+   <button> falls back to its own UA default text colour (blue on some
+   mobile browsers) instead of the page's ink whenever a button rule
+   doesn't set its own color explicitly. */
+button{ font-family: inherit; color: inherit; cursor: pointer; }
 ul{ margin: 0; padding: 0; list-style: none; }
 h1,h2,h3,h4,p{ margin: 0; }
 input, select, textarea{ font-family: inherit; font-size: inherit; }
@@ -756,6 +760,9 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-pill);
   background: var(--surface);
+  /* Without this, a <button>'s own UA default text colour (blue on
+     some mobile browsers) shows through instead of the page's ink. */
+  color: var(--ink);
   font-size: var(--text-sm);
   font-weight: 600;
   transition: border-color 0.15s ease, background 0.15s ease;
