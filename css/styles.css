@@ -26,8 +26,12 @@
   --success:      #3C6E4A;
   --focus:        #6E2438;
 
-  /* type */
-  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  /* type - one sans-serif family across the whole site (minimalist
+     fashion-editorial look: no serif anywhere). --font-display is kept
+     as its own token, set equal to --font-body, rather than deleted, so
+     every rule that reaches for "the heading font" still resolves
+     correctly if the two ever need to diverge again. */
+  --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
 
   --text-xs:   0.75rem;   /* 12px */
@@ -121,9 +125,11 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   text-wrap: balance;
   letter-spacing: 0.01em;
 }
-/* Fraunces' display-font ampersand is a heavily stylised loop that sits
-   oddly against the rest of a heading - swap just that character back
-   to the plain body-font glyph where a heading needs an "&". */
+/* Left over from when --font-display was a serif (Fraunces) with a
+   heavily stylised ampersand glyph - now that --font-display and
+   --font-body are the same family, this is a no-op, but it's harmless
+   and keeps "&" correct automatically if the two fonts ever diverge
+   again. */
 .section-heading .amp{
   font-family: var(--font-body);
   font-style: normal;
@@ -220,16 +226,16 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   /* Mobile-first: start small so the logo never crowds out the menu
      button/icons on a narrow screen, then scale up with viewport width.
      EDIT the three heights below together to keep it in proportion. */
-  height: 48px; /* 140% of 34px (one 40% bump from the previous 34px base) */
+  height: 72px; /* 48px + 50% (mobile was too small to read) */
   width: auto;
   display: block;
   max-width: 100%;
 }
 @media (min-width: 480px){
-  .logo-img{ height: 62px; } /* 140% of 44px */
+  .logo-img{ height: 93px; } /* 62px + 50% */
 }
 @media (min-width: 900px){
-  .logo-img{ height: 92px; } /* 140% of 66px */
+  .logo-img{ height: 138px; } /* 92px + 50% */
 }
 
 .header-icons{
