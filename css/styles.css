@@ -527,14 +527,6 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   line-height: 1.5;
   margin-bottom: 0.9rem;
 }
-.buybox-subtitle{
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: var(--text-md);
-  color: var(--ink-soft);
-  letter-spacing: 0.01em;
-  margin-bottom: 0.4rem;
-}
 .buybox-tiktok{
   font-size: var(--text-sm);
   font-weight: 600;
