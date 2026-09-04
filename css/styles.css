@@ -22,7 +22,7 @@
   --accent:       #6E2438;  /* oxblood - CTAs, price, active states */
   --accent-hover: #591D2D;
   --accent-tint:  #F4E9EA;  /* pale accent wash */
-  --gold:         #96742E;  /* star ratings only */
+  --gold:         #D9A620;  /* star ratings only - brighter/more saturated than a muted bronze so ratings read clearly at a glance */
   --success:      #3C6E4A;
   --focus:        #6E2438;
 
@@ -556,9 +556,9 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .star-rating{
   position: relative;
   display: inline-block;
-  font-size: 1rem;
+  font-size: 1.15rem;
   line-height: 1;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
 }
 .star-rating-track, .star-rating-fill{ display: block; white-space: nowrap; }
 .star-rating-track{ color: var(--line-strong); }
@@ -569,8 +569,8 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   width: var(--pct, 0%);
   color: var(--gold);
 }
-.star-rating--sm{ font-size: 0.75rem; }
-.star-rating--lg{ font-size: 1.5rem; letter-spacing: 3px; }
+.star-rating--sm{ font-size: 0.95rem; letter-spacing: 2px; }
+.star-rating--lg{ font-size: 1.85rem; letter-spacing: 4px; }
 
 .buybox-rating .rating-count{
   font-size: var(--text-xs);
