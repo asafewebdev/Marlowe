@@ -1239,7 +1239,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 }
 .review-card[hidden]{ display: none; }
 .review-photo{
-  width: 109px; /* 84px + 30% */
+  width: 131px; /* 84px + 30%, then +20% */
   height: auto; /* without this, the img's width/height attributes (its real pixel size) win over aspect-ratio */
   aspect-ratio: 4/5;
   object-fit: cover;
