@@ -1011,9 +1011,6 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   display: grid;
   gap: 2rem;
 }
-@media (min-width: 700px){
-  .details-grid{ grid-template-columns: 1fr 1fr; }
-}
 .details-grid h3{
   font-size: var(--text-sm);
   text-transform: uppercase;
@@ -1023,6 +1020,33 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 }
 .details-grid ul{ display: grid; gap: 0.5rem; }
 .details-grid li{ font-size: var(--text-base); color: var(--ink-soft); }
+@media (min-width: 700px){
+  /* Two independent <ul>s naturally drift out of row alignment as soon
+     as one item wraps to a second line (see "Store on a padded
+     hanger..." vs "Belt: self-fabric tie belt..."), staggering every
+     row after it. Subgrid ties both columns' rows to one shared set of
+     row tracks so a taller item on one side pushes both columns' next
+     row down together - relies on Composition & Fit and Care
+     Instructions having the same number of <li>s (5); if that count
+     ever diverges, update the "5" below to match. */
+  .details-grid{
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto repeat(5, auto);
+    row-gap: 0.7rem;
+  }
+  .details-grid > div{
+    display: grid;
+    grid-row: 1 / span 6;
+    grid-template-rows: subgrid;
+    row-gap: 0.7rem;
+  }
+  .details-grid h3{ margin-bottom: 0; }
+  .details-grid ul{
+    grid-row: 2 / span 5;
+    grid-template-rows: subgrid;
+    row-gap: 0.7rem;
+  }
+}
 
 .accordions{ padding-block: 1rem; }
 .accordions .container{ max-width: 760px; }
