@@ -657,16 +657,6 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   line-height: 1;
 }
 
-.buybox-financing{
-  font-size: var(--text-xs);
-  color: var(--ink-soft);
-  margin-bottom: 1.5rem;
-}
-.buybox-financing button{
-  background: none; border: 0; padding: 0;
-  text-decoration: underline; text-underline-offset: 2px;
-  color: inherit; font-size: inherit;
-}
 
 .option-block{ margin-bottom: 1.5rem; }
 .option-label{
