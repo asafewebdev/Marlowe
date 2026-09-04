@@ -188,6 +188,25 @@
     if (prevBtn) prevBtn.addEventListener('click', function () { showIndex(currentIndex - 1); });
     if (nextBtn) nextBtn.addEventListener('click', function () { showIndex(currentIndex + 1); });
 
+    // Swipe left/right on the main photo (mobile) to move between photos,
+    // same as the prev/next arrows. Ignored once a swipe reads as more
+    // vertical than horizontal, so scrolling the page still works.
+    var galleryMain = document.querySelector('.gallery-main');
+    if (galleryMain) {
+      var touchStartX = 0;
+      var touchStartY = 0;
+      galleryMain.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+      }, { passive: true });
+      galleryMain.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+        showIndex(dx < 0 ? currentIndex + 1 : currentIndex - 1);
+      }, { passive: true });
+    }
+
     // Render the default colourway on load so the arrows have photos to
     // cycle through immediately (the static HTML thumbs are a no-JS
     // fallback and get rebuilt here to match).

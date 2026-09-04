@@ -402,6 +402,9 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   position: relative;
   border: 1px solid var(--line);
   overflow: hidden;
+  /* Let a vertical swipe still scroll the page; a horizontal swipe is
+     read as a photo change instead (js/main.js, gallery() swipe handler). */
+  touch-action: pan-y;
 }
 .gallery-main .ph{ width: 100%; height: 100%; }
 .gallery-main img{ width: 100%; height: 100%; object-fit: cover; }
@@ -1236,7 +1239,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 }
 .review-card[hidden]{ display: none; }
 .review-photo{
-  width: 84px;
+  width: 109px; /* 84px + 30% */
   height: auto; /* without this, the img's width/height attributes (its real pixel size) win over aspect-ratio */
   aspect-ratio: 4/5;
   object-fit: cover;
