@@ -188,22 +188,108 @@
     if (prevBtn) prevBtn.addEventListener('click', function () { showIndex(currentIndex - 1); });
     if (nextBtn) nextBtn.addEventListener('click', function () { showIndex(currentIndex + 1); });
 
-    // Swipe left/right on the main photo (mobile) to move between photos,
-    // same as the prev/next arrows. Ignored once a swipe reads as more
-    // vertical than horizontal, so scrolling the page still works.
+    // Drag left/right on the main photo (mobile) to slide between photos,
+    // same destination as the prev/next arrows but the image actually
+    // follows the finger - the next/previous photo slides in from the
+    // edge as the current one slides out, snapping into place or back on
+    // release. Reads as a vertical scroll instead (untouched) once a
+    // gesture is more vertical than horizontal.
     var galleryMain = document.querySelector('.gallery-main');
     if (galleryMain) {
-      var touchStartX = 0;
-      var touchStartY = 0;
+      var dragStartX = 0;
+      var dragStartY = 0;
+      var dragDecided = false;
+      var dragging = false;
+      var dragDeltaX = 0;
+      var mainWidth = 0;
+      var peekImg = null;
+
+      function ensurePeek() {
+        if (!peekImg) {
+          peekImg = document.createElement('img');
+          peekImg.className = 'gallery-peek-img';
+          peekImg.setAttribute('aria-hidden', 'true');
+          galleryMain.insertBefore(peekImg, mainImg.nextSibling);
+        }
+        return peekImg;
+      }
+
+      function cleanupDrag() {
+        mainImg.style.transition = '';
+        mainImg.style.transform = '';
+        if (peekImg) { peekImg.remove(); peekImg = null; }
+      }
+
       galleryMain.addEventListener('touchstart', function (e) {
-        touchStartX = e.changedTouches[0].clientX;
-        touchStartY = e.changedTouches[0].clientY;
+        if (currentPhotos.length < 2) return;
+        dragStartX = e.touches[0].clientX;
+        dragStartY = e.touches[0].clientY;
+        dragDecided = false;
+        dragging = false;
+        dragDeltaX = 0;
+        mainWidth = galleryMain.clientWidth;
       }, { passive: true });
-      galleryMain.addEventListener('touchend', function (e) {
-        var dx = e.changedTouches[0].clientX - touchStartX;
-        var dy = e.changedTouches[0].clientY - touchStartY;
-        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
-        showIndex(dx < 0 ? currentIndex + 1 : currentIndex - 1);
+
+      galleryMain.addEventListener('touchmove', function (e) {
+        if (currentPhotos.length < 2) return;
+        var dx = e.touches[0].clientX - dragStartX;
+        var dy = e.touches[0].clientY - dragStartY;
+
+        if (!dragDecided) {
+          if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+          dragDecided = true;
+          dragging = Math.abs(dx) > Math.abs(dy);
+          if (dragging) mainImg.style.transition = 'none';
+        }
+        if (!dragging) return;
+
+        e.preventDefault(); // committed to a horizontal drag - don't also scroll
+        dragDeltaX = dx;
+        var dir = dragDeltaX < 0 ? 1 : -1;
+        var targetIndex = (currentIndex + dir + currentPhotos.length) % currentPhotos.length;
+        var targetPhoto = currentPhotos[targetIndex];
+        var peek = ensurePeek();
+        if (peek.getAttribute('data-src') !== targetPhoto.src) {
+          peek.src = targetPhoto.src;
+          peek.setAttribute('data-src', targetPhoto.src);
+        }
+        peek.style.transition = 'none';
+        peek.style.transform = 'translateX(' + (dir * mainWidth + dragDeltaX) + 'px)';
+        mainImg.style.transform = 'translateX(' + dragDeltaX + 'px)';
+      }, { passive: false });
+
+      galleryMain.addEventListener('touchend', function () {
+        if (!dragging) { dragDecided = false; return; }
+        dragging = false;
+        dragDecided = false;
+
+        var threshold = mainWidth * 0.18;
+        mainImg.style.transition = 'transform 0.25s ease';
+        if (peekImg) peekImg.style.transition = 'transform 0.25s ease';
+
+        if (Math.abs(dragDeltaX) > threshold) {
+          var dir = dragDeltaX < 0 ? 1 : -1;
+          var nextIndex = currentIndex + dir;
+          mainImg.style.transform = 'translateX(' + (-dir * mainWidth) + 'px)';
+          if (peekImg) peekImg.style.transform = 'translateX(0px)';
+          setTimeout(function () {
+            mainImg.style.transition = 'none';
+            showIndex(nextIndex); // src swap happens while off-screen/clipped
+            mainImg.style.transform = 'translateX(0px)';
+            if (peekImg) { peekImg.remove(); peekImg = null; }
+            mainImg.style.transition = '';
+          }, 250);
+        } else {
+          mainImg.style.transform = 'translateX(0px)';
+          if (peekImg) peekImg.style.transform = 'translateX(' + (dragDeltaX < 0 ? mainWidth : -mainWidth) + 'px)';
+          setTimeout(cleanupDrag, 250);
+        }
+      }, { passive: true });
+
+      galleryMain.addEventListener('touchcancel', function () {
+        dragging = false;
+        dragDecided = false;
+        cleanupDrag();
       }, { passive: true });
     }
 
