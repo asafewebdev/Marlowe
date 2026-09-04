@@ -124,7 +124,7 @@
            images/ - swatch clicks re-render this block automatically. -->
       <div class="gallery">
         <div class="gallery-main">
-          <img id="gallery-main-img" src="images/coat-latte-front.jpg" alt="Marlowe Faux Fur Coat in Latte, front view" width="600" height="800">
+          <img id="gallery-main-img" src="images/coat-coffee-front.jpg" alt="Marlowe Faux Fur Coat in Coffee Brown, front view" width="600" height="800">
           <button class="gallery-wishlist" aria-pressed="false" aria-label="Add to wishlist">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.2l-1.3-1.2C6 14.8 3 12.1 3 8.9 3 6.3 5 4.3 7.5 4.3c1.5 0 2.9.7 3.8 1.9.9-1.2 2.3-1.9 3.8-1.9 2.5 0 4.5 2 4.5 4.6 0 3.2-3 5.9-7.7 10.1L12 20.2z"/></svg>
           </button>
@@ -137,33 +137,35 @@
         </div>
 
         <div class="gallery-thumbs" id="gallery-thumbs">
-          <button class="thumb is-active" aria-current="true" aria-label="View 1: front" data-src="images/coat-latte-front.jpg" data-alt="Marlowe Faux Fur Coat in Latte, front view">
-            <img src="images/coat-latte-front.jpg" alt="" width="600" height="800">
+          <button class="thumb is-active" aria-current="true" aria-label="View 1: front" data-src="images/coat-coffee-front.jpg" data-alt="Marlowe Faux Fur Coat in Coffee Brown, front view">
+            <img src="images/coat-coffee-front.jpg" alt="" width="600" height="800">
           </button>
-          <button class="thumb" aria-label="View 2: back" data-src="images/coat-latte-back.jpg" data-alt="Marlowe Faux Fur Coat in Latte, back view">
-            <img src="images/coat-latte-back.jpg" alt="" width="600" height="800">
+          <button class="thumb" aria-label="View 2: back" data-src="images/coat-coffee-back.jpg" data-alt="Marlowe Faux Fur Coat in Coffee Brown, back view">
+            <img src="images/coat-coffee-back.jpg" alt="" width="600" height="800">
           </button>
         </div>
       </div>
 
       <!-- Buy box -->
       <div class="buybox">
-        <p class="buybox-brand">Marlowe</p>
-        <h1 id="product-title" class="buybox-title">Marlowe Faux Fur Coat</h1>
+        <p class="buybox-brand">Marlowe Belted Faux Fur Coat</p>
+        <h1 id="product-title" class="buybox-title">The coat that makes your simplest outfit look expensive.</h1>
+        <p class="buybox-subheadline">Throw it over leggings and you look like you tried. That oversized collar, a belt that draws in the waist, plush, cruelty-free faux fur, made for the British winter.</p>
         <p class="buybox-subtitle">The Perfect Coat for Winter</p>
+        <p class="buybox-tiktok">Seen it on TikTok? Here it is, in every colour.</p>
 
         <a href="#reviews" class="buybox-rating">
           <span class="star-rating" style="--pct:96%" aria-hidden="true">
             <span class="star-rating-track">★★★★★</span>
             <span class="star-rating-fill">★★★★★</span>
           </span>
-          <span class="rating-count">4.8 (77 reviews)</span>
+          <span class="rating-count">4.8 (63 reviews)</span>
         </a>
 
         <!-- EDIT: promo badge, price fields and the countdown target date
              (SALE_END_DATE, near the top of js/main.js) all update
              independently - none of them touch each other automatically. -->
-        <p class="promo-badge">Autumn Event — 50% Off</p>
+        <p class="promo-badge">Autumn Event, 50% Off</p>
 
         <div class="buybox-price">
           <span class="price-now">£19.00</span>
@@ -191,13 +193,13 @@
         <div class="option-block">
           <div class="option-label">
             <span>Colour</span>
-            <span class="option-value" id="selected-colour">Latte</span>
+            <span class="option-value" id="selected-colour">Coffee Brown</span>
           </div>
           <div class="swatches" role="group" aria-label="Colour">
+            <button class="swatch is-active" data-colour="coffee" data-colour-name="Coffee Brown" aria-pressed="true" aria-label="Coffee Brown"><span class="swatch-fill"></span></button>
             <button class="swatch" data-colour="winterwhite" data-colour-name="Winter White" aria-pressed="false" aria-label="Winter White"><span class="swatch-fill"></span></button>
             <button class="swatch" data-colour="espresso" data-colour-name="Espresso Black" aria-pressed="false" aria-label="Espresso Black"><span class="swatch-fill"></span></button>
-            <button class="swatch" data-colour="coffee" data-colour-name="Coffee Brown" aria-pressed="false" aria-label="Coffee Brown"><span class="swatch-fill"></span></button>
-            <button class="swatch is-active" data-colour="latte" data-colour-name="Latte" aria-pressed="true" aria-label="Latte"><span class="swatch-fill"></span></button>
+            <button class="swatch" data-colour="latte" data-colour-name="Latte" aria-pressed="false" aria-label="Latte"><span class="swatch-fill"></span></button>
           </div>
         </div>
 
@@ -214,16 +216,18 @@
             <button class="size-btn" aria-pressed="false">XL</button>
           </div>
           <p class="size-error">Please select a size before adding to your bag.</p>
+          <p class="size-microcopy">True to size, cut relaxed. Prefer it fitted? Size down. Not sure? Order your usual, returns are free, so it's easy to get your size.</p>
 
           <!-- Product Measurements - EDIT: values come from SIZE_MEASUREMENTS
-               in js/main.js; this block fills in and appears once a size
-               is picked above. -->
-          <div class="measurements" id="measurements" hidden>
+               in js/main.js; the placeholder line shows until a size is
+               picked above, then swaps for the real figures. -->
+          <div class="measurements" id="measurements">
             <div class="measurements-head">
               <span class="measurements-title">Product Measurements</span>
               <span class="measurements-size" id="measurements-size"></span>
             </div>
-            <dl class="measurements-grid">
+            <p class="measurements-placeholder" id="measurements-placeholder">Select a size to see measurements.</p>
+            <dl class="measurements-grid" id="measurements-grid" hidden>
               <div class="measurements-row">
                 <dt>Shoulder Width</dt>
                 <dd id="measurement-shoulder"></dd>
@@ -264,12 +268,8 @@
         </ul>
 
         <p class="buybox-note">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="4" rx="1"/><path d="M12 10V4M12 10 8 4M12 10l4-6"/><path d="M5 14v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6"/></svg>
-          Order within <strong>4h 12m</strong> for dispatch today
-        </p>
-        <p class="buybox-note">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
-          In stock, despatched from our London warehouse
+          Free UK returns within 28 days &middot; Despatched from our London warehouse
         </p>
 
         <!-- EDIT: swap the wordmark/colour if you switch payment processors -->
@@ -364,6 +364,18 @@
       </ul>
       <p class="description-copy">Wear it over black for the evening, or belted over jeans and a roll neck by day. The Marlowe is the coat you'll reach for all winter.</p>
       <p class="description-copy">Model wears a UK size M and is 5'9" (175cm). The fit is relaxed through the body, so size down for a closer cut.</p>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       NOT ANOTHER VIRAL COAT
+       ================================================================= -->
+  <section class="viral-callout">
+    <div class="container">
+      <div class="viral-callout-inner">
+        <h2 class="viral-callout-title">Not another viral coat</h2>
+        <p class="viral-callout-copy">You've seen the ones that arrive flat, shed everywhere and itch. This isn't that. Densely piled faux fur that holds its shape and doesn't shed, a satin touch lining that slips over knitwear, and a belt with proper body to it. Picked and posted from our London warehouse.</p>
+      </div>
     </div>
   </section>
 
@@ -468,14 +480,14 @@
             <span class="star-rating-track">★★★★★</span>
             <span class="star-rating-fill">★★★★★</span>
           </span>
-          <p class="count">4.8 out of 5, based on 214 reviews</p>
+          <p class="count">4.8 out of 5, based on 63 reviews</p>
         </div>
         <div class="summary-bars">
-          <div class="bar-row"><span>5 star</span><span class="bar-track"><span class="bar-fill" style="width:81%"></span></span><span class="bar-count">173</span></div>
-          <div class="bar-row"><span>4 star</span><span class="bar-track"><span class="bar-fill" style="width:13%"></span></span><span class="bar-count">28</span></div>
-          <div class="bar-row"><span>3 star</span><span class="bar-track"><span class="bar-fill" style="width:4%"></span></span><span class="bar-count">9</span></div>
-          <div class="bar-row"><span>2 star</span><span class="bar-track"><span class="bar-fill" style="width:1%"></span></span><span class="bar-count">2</span></div>
-          <div class="bar-row"><span>1 star</span><span class="bar-track"><span class="bar-fill" style="width:1%"></span></span><span class="bar-count">2</span></div>
+          <div class="bar-row"><span>5 star</span><span class="bar-track"><span class="bar-fill" style="width:75%"></span></span><span class="bar-count">47</span></div>
+          <div class="bar-row"><span>4 star</span><span class="bar-track"><span class="bar-fill" style="width:25%"></span></span><span class="bar-count">16</span></div>
+          <div class="bar-row"><span>3 star</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span class="bar-count">0</span></div>
+          <div class="bar-row"><span>2 star</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span class="bar-count">0</span></div>
+          <div class="bar-row"><span>1 star</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span class="bar-count">0</span></div>
         </div>
       </div>
 
@@ -557,7 +569,7 @@
       <ul id="reviews-list" class="reviews-list">
 
         <li class="review-card">
-          <img class="review-photo" src="images/review-1.webp" alt="" width="561" height="713">
+          <img class="review-photo" src="images/review-4.jpg" alt="" width="749" height="999">
           <div class="review-content">
             <div class="review-top">
               <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
@@ -567,8 +579,8 @@
                 Verified Purchase
               </span>
             </div>
-            <p class="review-meta">Sophie T. · 1 September 2026</p>
-            <p class="review-body">Gorgeous coat. The collar is even bigger than it looks in the photos and it feels lovely on. Had three people ask where it was from on the school run.</p>
+            <p class="review-meta">Hannah W. · 22 August 2026</p>
+            <p class="review-body">Wasn't sure about faux fur but this is done really well. Soft, no shedding, and it sits nicely. Winter White is stunning in person.</p>
           </div>
         </li>
 
@@ -589,6 +601,22 @@
         </li>
 
         <li class="review-card">
+          <img class="review-photo" src="images/review-1.webp" alt="" width="561" height="713">
+          <div class="review-content">
+            <div class="review-top">
+              <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
+              <span class="visually-hidden">5 out of 5 stars</span>
+              <span class="review-verified">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+                Verified Purchase
+              </span>
+            </div>
+            <p class="review-meta">Sophie T. · 1 September 2026</p>
+            <p class="review-body">Gorgeous coat. The collar is even bigger than it looks in the photos and it feels lovely on. Had three people ask where it was from on the school run.</p>
+          </div>
+        </li>
+
+        <li class="review-card">
           <img class="review-photo" src="images/review-3.webp" alt="" width="593" height="680">
           <div class="review-content">
             <div class="review-top">
@@ -601,22 +629,6 @@
             </div>
             <p class="review-meta">Emma R. · 26 August 2026</p>
             <p class="review-body">Really happy with it. Took about a week to arrive. Sizing is generous so I'd say size down if you want it fitted, I kept mine roomy for jumpers underneath.</p>
-          </div>
-        </li>
-
-        <li class="review-card">
-          <img class="review-photo" src="images/review-4.jpg" alt="" width="749" height="999">
-          <div class="review-content">
-            <div class="review-top">
-              <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
-              <span class="visually-hidden">5 out of 5 stars</span>
-              <span class="review-verified">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
-                Verified Purchase
-              </span>
-            </div>
-            <p class="review-meta">Hannah W. · 22 August 2026</p>
-            <p class="review-body">Wasn't sure about faux fur but this is done really well. Soft, no shedding, and it sits nicely. Winter White is stunning in person.</p>
           </div>
         </li>
 
@@ -788,7 +800,7 @@
   <!-- =================================================================
        RELATED PRODUCTS
        EDIT: replace each card's .ph with a real <img> once you have
-       product photography. "Add to Cart" adds straight to the bag
+       product photography. "Add to Bag" adds straight to the bag
        drawer (js/main.js, relatedAddToCart) rather than linking to a
        product page - update data-name/-variant/-price/-img to match
        your real product/pricing.
@@ -802,8 +814,8 @@
           <div class="related-card-info">
             <p class="related-name">Marlowe Ribbed Roll Neck</p>
             <p class="related-variant">Winter White</p>
-            <p class="related-price">£5.00</p>
-            <button type="button" class="btn btn-primary related-add" data-name="Marlowe Ribbed Roll Neck" data-variant="Winter White" data-price="5.00" data-img="images/rollneck-winterwhite.jpg">Add to Cart</button>
+            <p class="related-price">£10.00</p>
+            <button type="button" class="btn btn-primary related-add" data-name="Marlowe Ribbed Roll Neck" data-variant="Winter White" data-price="10.00" data-img="images/rollneck-winterwhite.jpg">Add to Bag</button>
           </div>
         </li>
         <li class="related-card">
@@ -811,8 +823,8 @@
           <div class="related-card-info">
             <p class="related-name">Marlowe Ribbed Roll Neck</p>
             <p class="related-variant">Espresso Black</p>
-            <p class="related-price">£5.00</p>
-            <button type="button" class="btn btn-primary related-add" data-name="Marlowe Ribbed Roll Neck" data-variant="Espresso Black" data-price="5.00" data-img="images/rollneck-espresso.jpg">Add to Cart</button>
+            <p class="related-price">£10.00</p>
+            <button type="button" class="btn btn-primary related-add" data-name="Marlowe Ribbed Roll Neck" data-variant="Espresso Black" data-price="10.00" data-img="images/rollneck-espresso.jpg">Add to Bag</button>
           </div>
         </li>
         <li class="related-card">
@@ -820,8 +832,8 @@
           <div class="related-card-info">
             <p class="related-name">Marlowe Ribbed Roll Neck</p>
             <p class="related-variant">Coffee Brown</p>
-            <p class="related-price">£5.00</p>
-            <button type="button" class="btn btn-primary related-add" data-name="Marlowe Ribbed Roll Neck" data-variant="Coffee Brown" data-price="5.00" data-img="images/rollneck-coffee.jpg">Add to Cart</button>
+            <p class="related-price">£10.00</p>
+            <button type="button" class="btn btn-primary related-add" data-name="Marlowe Ribbed Roll Neck" data-variant="Coffee Brown" data-price="10.00" data-img="images/rollneck-coffee.jpg">Add to Bag</button>
           </div>
         </li>
         <li class="related-card">
@@ -829,11 +841,92 @@
           <div class="related-card-info">
             <p class="related-name">Marlowe Ribbed Roll Neck</p>
             <p class="related-variant">Storm Grey</p>
-            <p class="related-price">£5.00</p>
-            <button type="button" class="btn btn-primary related-add" data-name="Marlowe Ribbed Roll Neck" data-variant="Storm Grey" data-price="5.00" data-img="images/rollneck-stormgrey.jpg">Add to Cart</button>
+            <p class="related-price">£10.00</p>
+            <button type="button" class="btn btn-primary related-add" data-name="Marlowe Ribbed Roll Neck" data-variant="Storm Grey" data-price="10.00" data-img="images/rollneck-stormgrey.jpg">Add to Bag</button>
           </div>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       FAQ
+       EDIT: copy inside each .accordion-panel-inner
+       ================================================================= -->
+  <section class="faq" aria-label="Frequently asked questions">
+    <div class="container">
+      <h2 class="section-heading faq-heading">Frequently Asked Questions</h2>
+
+      <div class="accordion-item">
+        <h3>
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-faq-1">
+            Does it shed?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </h3>
+        <div id="panel-faq-1" class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <p>No. The faux fur is densely piled and holds its shape, so it doesn't shed like cheaper coats.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h3>
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-faq-2">
+            Is it real fur?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </h3>
+        <div id="panel-faq-2" class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <p>No, it's 100% faux (modacrylic), cruelty free by design.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h3>
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-faq-3">
+            Is it warm?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </h3>
+        <div id="panel-faq-3" class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <p>Yes. Fully lined and dense enough for the coldest months, without the weight.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h3>
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-faq-4">
+            When will it arrive?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </h3>
+        <div id="panel-faq-4" class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <p>Despatched from our London warehouse. Standard UK delivery is 3 to 5 working days, express is 1 to 2, next-day if you order before 8pm.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h3>
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-faq-5">
+            What if it's not right?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </h3>
+        <div id="panel-faq-5" class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <p>Free UK returns within 28 days, unworn with tags. Start it online via the Returns Portal.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -909,7 +1002,7 @@
     <div class="footer-bottom">
       <p class="footer-legal">
         <span>&copy; <span id="current-year">2026</span> Marlowe Outerwear Ltd. All rights reserved.</span>
-        <span>Registered in England &amp; Wales. VAT No. GB000000000</span>
+        <span>Registered in England &amp; Wales.</span>
       </p>
       <!-- EDIT: swap for real payment provider badges/logos -->
       <div class="payment-block">
@@ -975,6 +1068,21 @@
 <div id="toast" class="toast" role="status" aria-live="polite">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
   <span class="toast-message">Added to your bag</span>
+</div>
+
+<!-- Sticky Add to Bag bar - mobile only, always visible once the main
+     buy box has scrolled out of view. Mirrors the selected colour and
+     price; its button triggers the same size validation and add-to-bag
+     flow as the main button (js/main.js, stickyBagBar()). -->
+<div class="sticky-bag-bar" id="sticky-bag-bar">
+  <div class="sticky-bag-bar-info">
+    <span class="swatch sticky-bag-swatch" id="sticky-bag-swatch" data-colour="coffee" aria-hidden="true"><span class="swatch-fill"></span></span>
+    <span class="sticky-bag-bar-text">
+      <span class="sticky-bag-bar-colour" id="sticky-bag-colour">Coffee Brown</span>
+      <span class="sticky-bag-bar-price" id="sticky-bag-price">£19.00</span>
+    </span>
+  </div>
+  <button type="button" class="btn btn-primary sticky-bag-btn" id="sticky-add-to-bag">Add to Bag</button>
 </div>
 
 <script src="js/main.js"></script>

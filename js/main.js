@@ -112,9 +112,9 @@
      as the first thumbnail/main photo when that colour is selected.
   ----------------------------------------------------------------------- */
   var GALLERY = {
-    latte: [
-      { src: 'images/coat-latte-front.jpg', alt: 'Marlowe Faux Fur Coat in Latte, front view' },
-      { src: 'images/coat-latte-back.jpg', alt: 'Marlowe Faux Fur Coat in Latte, back view' }
+    coffee: [
+      { src: 'images/coat-coffee-front.jpg', alt: 'Marlowe Faux Fur Coat in Coffee Brown, front view' },
+      { src: 'images/coat-coffee-back.jpg', alt: 'Marlowe Faux Fur Coat in Coffee Brown, back view' }
     ],
     winterwhite: [
       { src: 'images/coat-winterwhite-front.jpg', alt: 'Marlowe Faux Fur Coat in Winter White, front view' },
@@ -124,9 +124,9 @@
       { src: 'images/coat-espresso-front.jpg', alt: 'Marlowe Faux Fur Coat in Espresso Black, front view' },
       { src: 'images/coat-espresso-back.jpg', alt: 'Marlowe Faux Fur Coat in Espresso Black, back view' }
     ],
-    coffee: [
-      { src: 'images/coat-coffee-front.jpg', alt: 'Marlowe Faux Fur Coat in Coffee Brown, front view' },
-      { src: 'images/coat-coffee-back.jpg', alt: 'Marlowe Faux Fur Coat in Coffee Brown, back view' }
+    latte: [
+      { src: 'images/coat-latte-front.jpg', alt: 'Marlowe Faux Fur Coat in Latte, front view' },
+      { src: 'images/coat-latte-back.jpg', alt: 'Marlowe Faux Fur Coat in Latte, back view' }
     ]
   };
 
@@ -223,8 +223,37 @@
         btn.setAttribute('aria-pressed', 'true');
         if (valueLabel) valueLabel.textContent = btn.getAttribute('data-colour-name') || '';
         renderGalleryColour(btn.getAttribute('data-colour'));
+        syncStickyBagBar();
       });
     });
+  })();
+
+  /* -----------------------------------------------------------------------
+     Sticky Add to Bag bar (mobile) - mirrors the buybox's selected colour
+     and price, and its button just clicks the real Add to Bag button so
+     it reuses the exact same size validation / add-to-cart flow.
+  ----------------------------------------------------------------------- */
+  var syncStickyBagBar = function () {};
+  (function stickyBagBar() {
+    var swatchDot = document.getElementById('sticky-bag-swatch');
+    var colourLabel = document.getElementById('sticky-bag-colour');
+    var priceLabel = document.getElementById('sticky-bag-price');
+    var stickyBtn = document.getElementById('sticky-add-to-bag');
+    var mainBtn = document.getElementById('add-to-bag');
+    if (!swatchDot || !stickyBtn || !mainBtn) return;
+
+    syncStickyBagBar = function () {
+      var activeSwatch = document.querySelector('.swatch.is-active');
+      var priceNowEl = document.querySelector('.price-now');
+      if (activeSwatch) {
+        swatchDot.setAttribute('data-colour', activeSwatch.getAttribute('data-colour') || '');
+        if (colourLabel) colourLabel.textContent = activeSwatch.getAttribute('data-colour-name') || '';
+      }
+      if (priceLabel && priceNowEl) priceLabel.textContent = priceNowEl.textContent;
+    };
+    syncStickyBagBar();
+
+    stickyBtn.addEventListener('click', function () { mainBtn.click(); });
   })();
 
   /* -----------------------------------------------------------------------
@@ -246,6 +275,8 @@
     var addToBagBtn = document.getElementById('add-to-bag');
     var measurementsBox = document.getElementById('measurements');
     var measurementsSize = document.getElementById('measurements-size');
+    var measurementsPlaceholder = document.getElementById('measurements-placeholder');
+    var measurementsGrid = document.getElementById('measurements-grid');
     var selectedSize = null;
 
     function renderMeasurements(size) {
@@ -256,7 +287,8 @@
       document.getElementById('measurement-bust').textContent = data.bust;
       document.getElementById('measurement-length').textContent = data.length;
       document.getElementById('measurement-sleeve').textContent = data.sleeve;
-      measurementsBox.hidden = false;
+      if (measurementsPlaceholder) measurementsPlaceholder.hidden = true;
+      if (measurementsGrid) measurementsGrid.hidden = false;
     }
 
     sizeButtons.forEach(function (btn) {
