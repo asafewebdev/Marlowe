@@ -738,25 +738,6 @@
   })();
 
   /* -----------------------------------------------------------------------
-     Newsletter signup - front-end only. Wire `action`/fetch to your ESP
-     (Klaviyo, Mailchimp, etc.) where marked below.
-  ----------------------------------------------------------------------- */
-  (function newsletter() {
-    var form = document.getElementById('newsletter-form');
-    if (!form) return;
-    var status = form.querySelector('.newsletter-status');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      // EDIT: send `form` data to your email service provider here.
-      if (status) {
-        status.textContent = 'Thank you, check your inbox to confirm your subscription.';
-        status.classList.add('is-visible');
-      }
-      form.reset();
-    });
-  })();
-
-  /* -----------------------------------------------------------------------
      "We Think You'll Like" - each card adds straight to the bag (no
      product page to visit). EDIT: reads its data from the data-* attrs
      on each .related-add button in index.html.

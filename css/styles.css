@@ -931,33 +931,6 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   font-variant-numeric: tabular-nums;
 }
 
-/* =========================================================================
-   7. TRUST BADGES
-   ========================================================================= */
-.trust-badges{
-  background: var(--surface-alt);
-  border-block: 1px solid var(--line);
-}
-.trust-badges .container{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  padding-block: 2rem;
-  text-align: center;
-}
-@media (min-width: 700px){
-  .trust-badges .container{ grid-template-columns: repeat(3, 1fr); text-align: left; }
-}
-.trust-item{
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  justify-content: center;
-}
-@media (min-width: 700px){ .trust-item{ justify-content: flex-start; } }
-.trust-item svg{ width: 26px; height: 26px; flex-shrink: 0; color: var(--accent); }
-.trust-item h3{ font-size: var(--text-sm); font-weight: 700; margin-bottom: 0.15em; }
-.trust-item p{ font-size: var(--text-xs); color: var(--ink-soft); }
 
 /* =========================================================================
    8. AT A GLANCE
@@ -1409,39 +1382,6 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 .faq{ padding-block: 3.5rem 1rem; }
 .faq .container{ max-width: 760px; }
 .faq-heading{ margin-bottom: 1.25rem; }
-
-/* =========================================================================
-   13. NEWSLETTER
-   ========================================================================= */
-.newsletter{ padding-block: 4.5rem; text-align: center; }
-.newsletter .container{ max-width: 560px; }
-.newsletter-heading{ margin-bottom: 0.6rem; }
-.newsletter-copy{ color: var(--ink-soft); margin-bottom: 1.75rem; }
-.newsletter-form{
-  display: flex;
-  gap: 0.6rem;
-  flex-direction: column;
-}
-@media (min-width: 560px){
-  .newsletter-form{ flex-direction: row; }
-}
-.newsletter-form input[type="email"]{
-  flex: 1;
-  padding: 0.9em 1em;
-  border: 1px solid var(--line-strong);
-  background: var(--surface);
-  font-size: var(--text-base);
-}
-.newsletter-form input[type="email"]:focus-visible{ outline-offset: 0; }
-.newsletter-form .btn{ white-space: nowrap; }
-.newsletter-fineprint{ font-size: var(--text-xs); color: var(--ink-faint); margin-top: 1rem; }
-.newsletter-status{
-  font-size: var(--text-sm);
-  margin-top: 1rem;
-  color: var(--success);
-  display: none;
-}
-.newsletter-status.is-visible{ display: block; }
 
 /* =========================================================================
    14. FOOTER

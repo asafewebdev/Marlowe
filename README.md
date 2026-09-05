@@ -8,7 +8,7 @@ plain HTML, CSS and JavaScript (no build step, no dependencies).
 ```
 index.html      All page markup and copy
 css/styles.css  All styling (design tokens at the top of the file)
-js/main.js      Interactions: gallery, swatches, sizes, accordions, reviews, newsletter
+js/main.js      Interactions: gallery, swatches, sizes, accordions, reviews
 ```
 
 ## Running it locally
@@ -60,8 +60,6 @@ npx serve .
   bag drawer (see the `cart()` block in `js/main.js`) that resets on
   refresh - no items are actually reserved or ordered. Wire `addItem`/
   `removeItem`/the Checkout button to your real cart/checkout API.
-- **Newsletter form** shows a success message but doesn't send anywhere -
-  point it at your email service provider (Klaviyo, Mailchimp, …).
 - **Header search / account** icons and most footer links are placeholder
   `href="#"` anchors - point them at real pages/routes.
 - **Payment badges** in the footer are text labels, not brand logos - swap
