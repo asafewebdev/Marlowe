@@ -763,7 +763,7 @@
         addToCart({
           name: btn.getAttribute('data-name'),
           variant: btn.getAttribute('data-variant'),
-          size: null,
+          size: btn.getAttribute('data-size'),
           price: parseFloat(btn.getAttribute('data-price')),
           was: null,
           img: btn.getAttribute('data-img')
