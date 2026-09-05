@@ -160,11 +160,24 @@
       });
     }
 
+    // Warms the browser's image cache/decode for a colourway's full photo
+    // set as soon as it's selected, so a later swipe never has to wait on
+    // a fetch+decode mid-gesture - that lag is what was showing as a
+    // flash back to the old photo (and briefly a blank/white gap) right
+    // as the drag handler swapped #gallery-main-img's src.
+    function preloadPhotos(photos) {
+      photos.forEach(function (photo) {
+        var img = new Image();
+        img.src = photo.src;
+      });
+    }
+
     // Rebuilds the thumbnail rail for a colourway and shows its first photo.
     function renderColour(colourKey) {
       var photos = GALLERY[colourKey];
       if (!photos || !photos.length) return;
       currentPhotos = photos;
+      preloadPhotos(photos);
 
       thumbsWrap.innerHTML = '';
       photos.forEach(function (photo, i) {
@@ -279,9 +292,24 @@
           setTimeout(function () {
             mainImg.style.transition = 'none';
             showIndex(nextIndex); // src swap happens while off-screen/clipped
-            mainImg.style.transform = 'translateX(0px)';
-            if (peekImg) { peekImg.remove(); peekImg = null; }
-            mainImg.style.transition = '';
+
+            // Only reveal (snap back to centre, drop the peek) once the new
+            // src has actually decoded - otherwise the still-undecoded old
+            // frame can flash back into view for a moment right as the
+            // peek image (which was already fully painted) gets removed.
+            // preloadPhotos() means this almost always resolves instantly;
+            // the 300ms fallback just guarantees it can never hang.
+            var revealed = false;
+            var reveal = function () {
+              if (revealed) return;
+              revealed = true;
+              mainImg.style.transform = 'translateX(0px)';
+              if (peekImg) { peekImg.remove(); peekImg = null; }
+              mainImg.style.transition = '';
+            };
+            if (mainImg.decode) mainImg.decode().then(reveal).catch(reveal);
+            else reveal();
+            setTimeout(reveal, 300);
           }, 250);
         } else {
           mainImg.style.transform = 'translateX(0px)';
