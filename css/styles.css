@@ -449,20 +449,6 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
    js/main.js. */
 #gallery-main-img, .gallery-peek-img{ position: absolute; inset: 0; }
 .gallery-peek-img{ pointer-events: none; }
-.gallery-wishlist{
-  position: absolute;
-  top: 1rem; right: 1rem;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  width: 40px; height: 40px;
-  display: grid;
-  place-items: center;
-  z-index: 2;
-}
-.gallery-wishlist svg{ width: 18px; height: 18px; }
-.gallery-wishlist[aria-pressed="true"] svg{ fill: var(--accent); stroke: var(--accent); }
-
 .gallery-nav{
   position: absolute;
   top: 50%;

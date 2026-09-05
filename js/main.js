@@ -333,18 +333,6 @@
   })();
 
   /* -----------------------------------------------------------------------
-     Wishlist heart toggle (gallery)
-  ----------------------------------------------------------------------- */
-  (function wishlist() {
-    var btn = document.querySelector('.gallery-wishlist');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      var pressed = btn.getAttribute('aria-pressed') === 'true';
-      btn.setAttribute('aria-pressed', String(!pressed));
-    });
-  })();
-
-  /* -----------------------------------------------------------------------
      Colour swatches
   ----------------------------------------------------------------------- */
   (function swatches() {
