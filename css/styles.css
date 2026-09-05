@@ -704,12 +704,6 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   margin-bottom: 0.7em;
 }
 .option-label .option-value{ font-weight: 400; color: var(--ink-soft); }
-.option-label .size-guide-link{
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  font-size: var(--text-xs);
-}
 
 .swatches{ display: flex; gap: 0.65rem; }
 .swatch{
@@ -836,23 +830,24 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
 }
 .buybox-note svg{ width: 16px; height: 16px; flex-shrink: 0; }
 
-/* "Powered by Stripe" trust badge - dark pill matching the shopper-protection
-   badge pattern common on Shopify PDPs. EDIT the colours below if you swap
-   payment processors; keep the near-black ground so the wordmark pops. */
+/* "Powered by Stripe" trust badge - light pill, centred under the buybox.
+   EDIT the colours below if you swap payment processors. */
 .stripe-badge{
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.65em;
-  background: #0B0B0D;
-  color: #ADACB5;
+  width: fit-content;
+  max-width: 100%;
+  margin: 1rem auto 0;
+  background: var(--surface);
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
   padding: 0.6em 1em;
   border-radius: 999px;
-  margin-top: 1rem;
-  max-width: 100%;
 }
 .stripe-badge-icon{ width: 20px; height: 20px; flex-shrink: 0; }
 .stripe-badge-text{ font-size: var(--text-xs); line-height: 1.3; }
-.stripe-wordmark{ color: #9490FF; font-weight: 800; letter-spacing: 0.01em; }
+.stripe-wordmark{ color: #635BFF; font-weight: 800; letter-spacing: 0.01em; }
 
 .size-error{
   font-size: var(--text-xs);
