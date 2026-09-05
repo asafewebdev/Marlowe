@@ -543,7 +543,8 @@
       items.forEach(function (item) {
         var row = document.createElement('div');
         row.className = 'cart-item';
-        var metaLine = item.size ? '<p class="cart-item-meta">Size ' + item.size + '</p>' : '';
+        var sizeLabel = item.size === 'One Size' ? item.size : item.size ? 'Size ' + item.size : '';
+        var metaLine = sizeLabel ? '<p class="cart-item-meta">' + sizeLabel + '</p>' : '';
         row.innerHTML =
           '<img class="cart-item-img" src="' + item.img + '" alt="" width="72" height="90">' +
           '<div class="cart-item-info">' +
