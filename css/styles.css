@@ -858,15 +858,24 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   line-height: 1.25;
 }
 
+/* Centred to match the payment icons and Stripe badge around it. Deliberately
+   not a flex row: with flex, once the text wraps on mobile the icon is pushed
+   to the far left edge and left stranded away from the words. As an inline
+   icon inside centred text it stays glued to the first word on every width. */
 .buybox-note{
-  display: flex;
-  align-items: center;
-  gap: 0.6em;
+  display: block;
+  text-align: center;
   font-size: var(--text-xs);
   color: var(--ink-soft);
   margin-top: 1rem;
 }
-.buybox-note svg{ width: 16px; height: 16px; flex-shrink: 0; }
+.buybox-note svg{
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: -0.22em;
+  margin-right: 0.5em;
+}
 
 /* Accepted-payment-methods strip - shared between the buybox (under Add
    to Bag) and the bag drawer (above the summary totals). Each <li> is a
