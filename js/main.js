@@ -114,7 +114,9 @@
   var GALLERY = {
     coffee: [
       { src: 'images/coat-coffee-front.jpg', alt: 'Marlowe Faux Fur Coat in Coffee Brown, front view' },
-      { src: 'images/coat-coffee-back.jpg', alt: 'Marlowe Faux Fur Coat in Coffee Brown, back view' }
+      { src: 'images/coat-coffee-back.jpg', alt: 'Marlowe Faux Fur Coat in Coffee Brown, back view' },
+      { src: 'images/coat-coffee-styled.jpg', alt: 'Marlowe Faux Fur Coat in Coffee Brown, styled front view' },
+      { src: 'images/coat-coffee-styled-back.jpg', alt: 'Marlowe Faux Fur Coat in Coffee Brown, styled back view' }
     ],
     winterwhite: [
       { src: 'images/coat-winterwhite-front.jpg', alt: 'Marlowe Faux Fur Coat in Winter White, front view' },
