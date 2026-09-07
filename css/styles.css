@@ -1117,6 +1117,7 @@ input, select, textarea{ font-family: inherit; font-size: inherit; }
   font-size: var(--text-base);
   color: var(--ink-soft);
 }
+.accordion-panel-inner a{ text-decoration: underline; text-underline-offset: 2px; }
 .accordion-panel-inner ul{ display: grid; gap: 0.5rem; margin-top: 0.6em; }
 .accordion-panel-inner li{ padding-left: 1.2em; position: relative; }
 .accordion-panel-inner li::before{
