@@ -23,6 +23,49 @@
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
 
+<!-- EDIT: shared payment-method icon sprite, referenced via <use> from
+     the buybox and the bag drawer below. Add/remove a <symbol> here to
+     change which methods appear in both places at once. -->
+<svg aria-hidden="true" style="position:absolute; width:0; height:0; overflow:hidden;">
+  <defs>
+    <symbol id="pm-applepay" viewBox="0 0 40 24">
+      <path d="M9.4 5.6c.5-.6 1.3-1 2-1 .1.8-.2 1.6-.7 2.2-.5.6-1.3 1-2 .9-.1-.8.2-1.6.7-2.1z" fill="#000"/>
+      <path d="M11.6 7.9c-1.1-.1-2 .6-2.6.6-.6 0-1.4-.6-2.3-.6-1.2 0-2.3.7-2.9 1.7-1.2 2.1-.3 5.3.9 7 .6.9 1.3 1.9 2.2 1.8.9 0 1.2-.6 2.3-.6s1.4.6 2.3.6c.9 0 1.6-.9 2.2-1.8.4-.6.7-1.2.9-1.9-2.3-.9-2.6-4-.4-5.3-.6-.9-1.6-1.4-2.6-1.5z" fill="#000"/>
+      <text x="16.5" y="16.5" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#000">Pay</text>
+    </symbol>
+    <symbol id="pm-googlepay" viewBox="0 0 40 24">
+      <g transform="translate(9,12)">
+        <path d="M0 -6 A6 6 0 0 1 5.2 -3 L2.6 -1.5 A3 3 0 0 0 0 -3 Z" fill="#4285F4"/>
+        <path d="M5.2 -3 A6 6 0 0 1 5.2 3 L2.6 1.5 A3 3 0 0 0 2.6 -1.5 Z" fill="#34A853"/>
+        <path d="M5.2 3 A6 6 0 0 1 0 6 L0 3 A3 3 0 0 0 2.6 1.5 Z" fill="#FBBC05"/>
+        <path d="M0 6 A6 6 0 0 1 0 -6 L0 -3 A3 3 0 0 0 0 3 Z" fill="#EA4335"/>
+        <rect x="0" y="-1" width="6" height="2" fill="#4285F4"/>
+      </g>
+      <text x="18.5" y="16.5" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="500" fill="#5F6368">Pay</text>
+    </symbol>
+    <symbol id="pm-visa" viewBox="0 0 40 24">
+      <text x="2" y="17" font-family="Arial, Helvetica, sans-serif" font-size="13" font-style="italic" font-weight="800" fill="#1A1F71" letter-spacing="0.5">VISA</text>
+    </symbol>
+    <symbol id="pm-mastercard" viewBox="0 0 40 24">
+      <circle cx="16" cy="12" r="7" fill="#EB001B"/>
+      <circle cx="24" cy="12" r="7" fill="#F79E1B"/>
+      <path d="M20 6.5a7 7 0 0 1 0 11 7 7 0 0 1 0-11z" fill="#FF5F00"/>
+    </symbol>
+    <symbol id="pm-amex" viewBox="0 0 40 24">
+      <rect x="1" y="3" width="38" height="18" rx="3" fill="#006FCF"/>
+      <text x="20" y="15.5" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="0.3">AMEX</text>
+    </symbol>
+    <symbol id="pm-discover" viewBox="0 0 40 24">
+      <text x="0" y="16" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" letter-spacing="-0.3" fill="#1B1B1B">Discover</text>
+      <circle cx="37" cy="15.5" r="3" fill="#F68121"/>
+    </symbol>
+    <symbol id="pm-diners" viewBox="0 0 40 24">
+      <circle cx="20" cy="12" r="9" fill="#0079BE"/>
+      <rect x="19" y="4.5" width="2" height="15" fill="#fff"/>
+    </symbol>
+  </defs>
+</svg>
+
 <!-- =====================================================================
      HEADER - three stacked strips: 1) discount bar, 2) search / logo /
      account+bag, 3) same-page nav. EDIT the three <li>s in the discount
@@ -243,6 +286,18 @@
 
         <!-- EDIT: wire this button to your real cart/checkout logic -->
         <button id="add-to-bag" class="btn btn-primary">Add to Bag</button>
+
+        <!-- EDIT: accepted payment methods - add/remove a <li> to match
+             the <symbol> defs near the top of <body>. -->
+        <ul class="payment-methods-icons" aria-label="Accepted payment methods">
+          <li aria-label="Apple Pay"><svg aria-hidden="true"><use href="#pm-applepay"></use></svg></li>
+          <li aria-label="Google Pay"><svg aria-hidden="true"><use href="#pm-googlepay"></use></svg></li>
+          <li aria-label="Visa"><svg aria-hidden="true"><use href="#pm-visa"></use></svg></li>
+          <li aria-label="Mastercard"><svg aria-hidden="true"><use href="#pm-mastercard"></use></svg></li>
+          <li aria-label="American Express"><svg aria-hidden="true"><use href="#pm-amex"></use></svg></li>
+          <li aria-label="Discover"><svg aria-hidden="true"><use href="#pm-discover"></use></svg></li>
+          <li aria-label="Diners Club"><svg aria-hidden="true"><use href="#pm-diners"></use></svg></li>
+        </ul>
 
         <!-- EDIT: the three trust badges below - icon + short label each -->
         <ul class="buybox-trust">
@@ -1793,6 +1848,16 @@
       <p>Add the Marlowe Faux Fur Coat to get started.</p>
     </div>
   </div>
+
+  <ul class="payment-methods-icons cart-payment-methods" aria-label="Accepted payment methods">
+    <li aria-label="Apple Pay"><svg aria-hidden="true"><use href="#pm-applepay"></use></svg></li>
+    <li aria-label="Google Pay"><svg aria-hidden="true"><use href="#pm-googlepay"></use></svg></li>
+    <li aria-label="Visa"><svg aria-hidden="true"><use href="#pm-visa"></use></svg></li>
+    <li aria-label="Mastercard"><svg aria-hidden="true"><use href="#pm-mastercard"></use></svg></li>
+    <li aria-label="American Express"><svg aria-hidden="true"><use href="#pm-amex"></use></svg></li>
+    <li aria-label="Discover"><svg aria-hidden="true"><use href="#pm-discover"></use></svg></li>
+    <li aria-label="Diners Club"><svg aria-hidden="true"><use href="#pm-diners"></use></svg></li>
+  </ul>
 
   <div class="cart-summary">
     <div class="cart-summary-row"><span>Items</span><span id="cart-summary-items">0</span></div>
