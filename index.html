@@ -1890,6 +1890,17 @@
   <button type="button" class="btn btn-primary sticky-bag-btn" id="sticky-add-to-bag">Add to Bag</button>
 </div>
 
+<!-- Review photo lightbox - tap any review photo to see it enlarged.
+     EDIT: js/main.js (reviewLightbox()) wires this to every
+     .review-photo image and swaps #review-lightbox-img's src on open. -->
+<div id="review-lightbox-overlay" class="lightbox-overlay" hidden></div>
+<div id="review-lightbox" class="lightbox" aria-hidden="true" aria-label="Review photo" inert>
+  <button type="button" id="review-lightbox-close" class="lightbox-close" aria-label="Close photo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+  </button>
+  <img id="review-lightbox-img" src="" alt="" draggable="false">
+</div>
+
 <script src="js/main.js"></script>
 </body>
 </html>

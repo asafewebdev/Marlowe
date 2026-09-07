@@ -774,6 +774,55 @@
   })();
 
   /* -----------------------------------------------------------------------
+     Review photo lightbox - tapping/clicking a review photo opens it
+     enlarged; also blocks the right-click / long-press context menu on
+     those photos (the CSS touch-callout/user-select rules on
+     .review-photo handle the iOS long-press case, this covers the
+     desktop right-click and Android contextmenu case).
+  ----------------------------------------------------------------------- */
+  (function reviewLightbox() {
+    var overlay = document.getElementById('review-lightbox-overlay');
+    var box = document.getElementById('review-lightbox');
+    var closeBtn = document.getElementById('review-lightbox-close');
+    var img = document.getElementById('review-lightbox-img');
+    var photos = document.querySelectorAll('.review-photo');
+    if (!overlay || !box || !closeBtn || !img || !photos.length) return;
+
+    function open(photo) {
+      img.src = photo.src;
+      img.alt = photo.alt || '';
+      overlay.hidden = false;
+      requestAnimationFrame(function () {
+        overlay.classList.add('is-visible');
+        box.classList.add('is-open');
+      });
+      box.removeAttribute('inert');
+      box.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lightbox-open');
+      closeBtn.focus();
+    }
+
+    function close() {
+      overlay.classList.remove('is-visible');
+      box.classList.remove('is-open');
+      box.setAttribute('inert', '');
+      box.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lightbox-open');
+      setTimeout(function () { overlay.hidden = true; img.src = ''; }, 300);
+    }
+
+    photos.forEach(function (photo) {
+      photo.addEventListener('click', function () { open(photo); });
+      photo.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+    });
+    overlay.addEventListener('click', close);
+    closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && box.classList.contains('is-open')) close();
+    });
+  })();
+
+  /* -----------------------------------------------------------------------
      Footer - current year
   ----------------------------------------------------------------------- */
   (function footerYear() {
