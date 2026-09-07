@@ -165,11 +165,22 @@
     // a fetch+decode mid-gesture - that lag is what was showing as a
     // flash back to the old photo (and briefly a blank/white gap) right
     // as the drag handler swapped #gallery-main-img's src.
+    // Deferred to idle time: warming the cache is only useful before a
+    // later swipe, so it must never compete for bandwidth with the first
+    // paint. requestIdleCallback keeps it off the critical path entirely.
     function preloadPhotos(photos) {
-      photos.forEach(function (photo) {
-        var img = new Image();
-        img.src = photo.src;
-      });
+      var warm = function () {
+        photos.forEach(function (photo) {
+          var img = new Image();
+          img.decoding = 'async';
+          img.src = photo.src;
+        });
+      };
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(warm, { timeout: 3000 });
+      } else {
+        setTimeout(warm, 1200);
+      }
     }
 
     // Rebuilds the thumbnail rail for a colourway and shows its first photo.
@@ -188,6 +199,8 @@
         btn.setAttribute('data-alt', photo.alt);
 
         var img = document.createElement('img');
+        img.loading = 'lazy';   // below the fold on mobile, where the rail renders as dots
+        img.decoding = 'async';
         img.src = photo.src;
         img.alt = '';
         img.width = 600;
@@ -640,7 +653,12 @@
 
         var video = document.createElement('video');
         video.setAttribute('controls', '');
-        video.setAttribute('preload', 'none');
+        // The visitor has just asked for this video, so buffer it properly.
+        // preload="none" here meant the browser fetched nothing until play()
+        // and then had to start from cold, which read as a long stall on
+        // mobile. The files are also stored moov-first (faststart), so
+        // playback can begin after a few hundred KB instead of the whole file.
+        video.setAttribute('preload', 'auto');
         video.setAttribute('playsinline', '');
         if (poster) video.setAttribute('poster', poster);
         var source = document.createElement('source');

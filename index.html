@@ -166,7 +166,7 @@
            images/ - swatch clicks re-render this block automatically. -->
       <div class="gallery">
         <div class="gallery-main">
-          <img id="gallery-main-img" src="images/coat-coffee-front.jpg" alt="Marlowe Faux Fur Coat in Coffee Brown, front view" width="600" height="800">
+          <img fetchpriority="high" decoding="async" id="gallery-main-img" src="images/coat-coffee-front.jpg" alt="Marlowe Faux Fur Coat in Coffee Brown, front view" width="600" height="800">
           <button class="gallery-nav gallery-nav-prev" id="gallery-prev" aria-label="Previous photo">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 5 8 12 15 19"/></svg>
           </button>
@@ -177,16 +177,16 @@
 
         <div class="gallery-thumbs" id="gallery-thumbs">
           <button class="thumb is-active" aria-current="true" aria-label="View 1: front" data-src="images/coat-coffee-front.jpg" data-alt="Marlowe Faux Fur Coat in Coffee Brown, front view">
-            <img src="images/coat-coffee-front.jpg" alt="" width="600" height="800">
+            <img loading="lazy" decoding="async" src="images/coat-coffee-front.jpg" alt="" width="600" height="800">
           </button>
           <button class="thumb" aria-label="View 2: back" data-src="images/coat-coffee-back.jpg" data-alt="Marlowe Faux Fur Coat in Coffee Brown, back view">
-            <img src="images/coat-coffee-back.jpg" alt="" width="600" height="800">
+            <img loading="lazy" decoding="async" src="images/coat-coffee-back.jpg" alt="" width="600" height="800">
           </button>
           <button class="thumb" aria-label="View 3: styled front" data-src="images/coat-coffee-styled.jpg" data-alt="Marlowe Faux Fur Coat in Coffee Brown, styled front view">
-            <img src="images/coat-coffee-styled.jpg" alt="" width="600" height="800">
+            <img loading="lazy" decoding="async" src="images/coat-coffee-styled.jpg" alt="" width="600" height="800">
           </button>
           <button class="thumb" aria-label="View 4: styled back" data-src="images/coat-coffee-styled-back.jpg" data-alt="Marlowe Faux Fur Coat in Coffee Brown, styled back view">
-            <img src="images/coat-coffee-styled-back.jpg" alt="" width="600" height="800">
+            <img loading="lazy" decoding="async" src="images/coat-coffee-styled-back.jpg" alt="" width="600" height="800">
           </button>
         </div>
       </div>
@@ -525,25 +525,25 @@
         <p class="reviews-videos-label">Hear From Our Customers</p>
         <ul class="reviews-videos">
           <li class="social-video" data-video="videos/social-1.mp4" data-poster="images/social-1-thumb.jpg">
-            <img class="social-video-poster" src="images/social-1-thumb.jpg" alt="" width="900" height="1600">
+            <img loading="lazy" decoding="async" class="social-video-poster" src="images/social-1-thumb.jpg" alt="" width="900" height="1600">
             <button type="button" class="social-video-play" aria-label="Play customer video 1">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </button>
           </li>
           <li class="social-video" data-video="videos/social-2.mp4" data-poster="images/social-2-thumb.jpg">
-            <img class="social-video-poster" src="images/social-2-thumb.jpg" alt="" width="902" height="1600">
+            <img loading="lazy" decoding="async" class="social-video-poster" src="images/social-2-thumb.jpg" alt="" width="902" height="1600">
             <button type="button" class="social-video-play" aria-label="Play customer video 2">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </button>
           </li>
           <li class="social-video" data-video="videos/social-3.mp4" data-poster="images/social-3-thumb.jpg">
-            <img class="social-video-poster" src="images/social-3-thumb.jpg" alt="" width="898" height="1600">
+            <img loading="lazy" decoding="async" class="social-video-poster" src="images/social-3-thumb.jpg" alt="" width="898" height="1600">
             <button type="button" class="social-video-play" aria-label="Play customer video 3">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </button>
           </li>
           <li class="social-video" data-video="videos/social-4.mp4" data-poster="images/social-4-thumb.jpg">
-            <img class="social-video-poster" src="images/social-4-thumb.jpg" alt="" width="899" height="1600">
+            <img loading="lazy" decoding="async" class="social-video-poster" src="images/social-4-thumb.jpg" alt="" width="899" height="1600">
             <button type="button" class="social-video-play" aria-label="Play customer video 4">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </button>
@@ -593,7 +593,7 @@
       <ul id="reviews-list" class="reviews-list">
 
         <li class="review-card">
-          <img class="review-photo" src="images/review-4.jpg" alt="" width="749" height="999">
+          <img loading="lazy" decoding="async" class="review-photo" src="images/review-4.jpg" alt="" width="749" height="999">
           <div class="review-content">
             <div class="review-top">
               <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
@@ -609,7 +609,7 @@
         </li>
 
         <li class="review-card">
-          <img class="review-photo" src="images/review-2.webp" alt="" width="999" height="999">
+          <img loading="lazy" decoding="async" class="review-photo" src="images/review-2.webp" alt="" width="999" height="999">
           <div class="review-content">
             <div class="review-top">
               <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
@@ -625,7 +625,7 @@
         </li>
 
         <li class="review-card">
-          <img class="review-photo" src="images/review-1.webp" alt="" width="561" height="713">
+          <img loading="lazy" decoding="async" class="review-photo" src="images/review-1.webp" alt="" width="561" height="713">
           <div class="review-content">
             <div class="review-top">
               <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
@@ -641,7 +641,7 @@
         </li>
 
         <li class="review-card">
-          <img class="review-photo" src="images/review-3.webp" alt="" width="593" height="680">
+          <img loading="lazy" decoding="async" class="review-photo" src="images/review-3.webp" alt="" width="593" height="680">
           <div class="review-content">
             <div class="review-top">
               <span class="star-rating star-rating--sm" style="--pct:80%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
@@ -657,7 +657,7 @@
         </li>
 
         <li class="review-card">
-          <img class="review-photo" src="images/review-5.jpg" alt="" width="999" height="999">
+          <img loading="lazy" decoding="async" class="review-photo" src="images/review-5.jpg" alt="" width="999" height="999">
           <div class="review-content">
             <div class="review-top">
               <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
@@ -673,7 +673,7 @@
         </li>
 
         <li class="review-card">
-          <img class="review-photo" src="images/review-6.webp" alt="" width="450" height="600">
+          <img loading="lazy" decoding="async" class="review-photo" src="images/review-6.webp" alt="" width="450" height="600">
           <div class="review-content">
             <div class="review-top">
               <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
@@ -689,7 +689,7 @@
         </li>
 
         <li class="review-card">
-          <img class="review-photo" src="images/review-7.jpg" alt="" width="281" height="500">
+          <img loading="lazy" decoding="async" class="review-photo" src="images/review-7.jpg" alt="" width="281" height="500">
           <div class="review-content">
             <div class="review-top">
               <span class="star-rating star-rating--sm" style="--pct:80%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
@@ -705,7 +705,7 @@
         </li>
 
         <li class="review-card">
-          <img class="review-photo" src="images/review-8.jpg" alt="" width="342" height="500">
+          <img loading="lazy" decoding="async" class="review-photo" src="images/review-8.jpg" alt="" width="342" height="500">
           <div class="review-content">
             <div class="review-top">
               <span class="star-rating star-rating--sm" style="--pct:100%" aria-hidden="true"><span class="star-rating-track">★★★★★</span><span class="star-rating-fill">★★★★★</span></span>
@@ -1609,7 +1609,7 @@
 
       <ul class="related-grid">
         <li class="related-card">
-          <img src="images/rollneck-winterwhite.jpg" alt="Ribbed Roll Neck in Winter White" width="551" height="726">
+          <img loading="lazy" decoding="async" src="images/rollneck-winterwhite.jpg" alt="Ribbed Roll Neck in Winter White" width="551" height="726">
           <div class="related-card-info">
             <p class="related-name">Ribbed Roll Neck</p>
             <p class="related-variant">Winter White</p>
@@ -1622,7 +1622,7 @@
           </div>
         </li>
         <li class="related-card">
-          <img src="images/rollneck-espresso.jpg" alt="Ribbed Roll Neck in Espresso Black" width="550" height="742">
+          <img loading="lazy" decoding="async" src="images/rollneck-espresso.jpg" alt="Ribbed Roll Neck in Espresso Black" width="550" height="742">
           <div class="related-card-info">
             <p class="related-name">Ribbed Roll Neck</p>
             <p class="related-variant">Espresso Black</p>
@@ -1636,7 +1636,7 @@
         </li>
         <li class="related-card is-sold-out">
           <span class="related-card-badge">Sold Out</span>
-          <img src="images/rollneck-coffee.jpg" alt="Ribbed Roll Neck in Coffee Brown" width="551" height="726">
+          <img loading="lazy" decoding="async" src="images/rollneck-coffee.jpg" alt="Ribbed Roll Neck in Coffee Brown" width="551" height="726">
           <div class="related-card-info">
             <p class="related-name">Ribbed Roll Neck</p>
             <p class="related-variant">Coffee Brown</p>
@@ -1650,7 +1650,7 @@
         </li>
         <li class="related-card is-sold-out">
           <span class="related-card-badge">Sold Out</span>
-          <img src="images/rollneck-stormgrey.jpg" alt="Ribbed Roll Neck in Storm Grey" width="551" height="729">
+          <img loading="lazy" decoding="async" src="images/rollneck-stormgrey.jpg" alt="Ribbed Roll Neck in Storm Grey" width="551" height="729">
           <div class="related-card-info">
             <p class="related-name">Ribbed Roll Neck</p>
             <p class="related-variant">Storm Grey</p>
@@ -1758,7 +1758,7 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <img class="logo-img footer-logo-img" src="images/marlowe-logo.png" alt="Marlowe London" width="900" height="338">
+        <img loading="lazy" decoding="async" class="logo-img footer-logo-img" src="images/marlowe-logo.png" alt="Marlowe London" width="900" height="338">
         <p>Considered outerwear for the British winter. Designed in London.</p>
       </div>
       <div class="footer-col">
